@@ -1,16 +1,16 @@
 <header>
   <div class="logo">
-    <a href="public/index.html">🏎️ <span class="red">Sports</span><span class="white">Car</span></a>
+    <a href="{{ url_for('product.home') }}">🏎️ <span class="red">Sports</span><span class="white">Car</span></a>
   </div>
 
   <div class="nav-container">
     <nav class="nav-menu">
       <ul>
-        <li><a href='{{url_for("home")}}'>Home</a></li>
-        <li><a href='{{url_for("products")}}'>Products</a></li>
-        <li><a href="{{ url_for('categories_page') }}" class="active">Categories</a></li>
-        <li><a href='{{url_for("about")}}'>About Us</a></li>
-        <li><a href='{{url_for("contact")}}'>Contact</a></li>
+        <li><a href="{{ url_for('product.home') }}">Home</a></li>
+        <li><a href="{{ url_for('product.product_list') }}">Products</a></li>
+        <li><a href="{{ url_for('product.categories') }}" class="active">Categories</a></li>
+        <li><a href="{{ url_for('product.about') }}">About Us</a></li>
+        <li><a href="{{ url_for('product.contact') }}">Contact</a></li>
       </ul>
     </nav>
 
@@ -21,6 +21,6 @@
   </div>
 
   <div class="login-container">
-    <a href='{{url_for("login")}}' class="icon">👤 Login</a>
+    <a href="{{ url_for('product.login') }}" class="icon">👤 Login</a>
   </div>
 </header>
