@@ -1,1 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
 
+<section class="categories-page">
+  <h1>Car Categories</h1>
+  <p>Browse our selection of sports cars by category.</p>
+
+  <!-- Block 1: Text - Image -->
+  <div class="category-block">
+    <div class="category-info">
+      <h2>Luxury Sports Cars</h2>
+      <p>Combining speed with sophistication, luxury sports cars offer premium interiors, advanced technology, and powerful engines. Expect brands like Ferrari, Aston Martin, and Bentley that deliver both comfort and adrenaline.</p>
+      <a href="products.html#luxury" class="view-btn">View Models →</a>
+    </div>
+    <div class="category-image fade-right">
+      <img src="images/ferrari-f8.jpg" alt="Luxury Sports Car">
+    </div>
+  </div>
+
+  <!-- Block 2: Image - Text -->
+  <div class="category-block">
+    <div class="category-image fade-left">
+      <img src="images/porsche-911-classic.jpg" alt="Classic Sports Car">
+    </div>
+    <div class="category-info">
+      <h2>Classic Sports Cars</h2>
+      <p>Timeless icons that shaped automotive history. These cars, such as the Porsche 911 Classic and Ford Mustang 1969, represent heritage, craftsmanship, and the golden age of motoring.</p>
+      <a href="products.html#Classic" class="view-btn">View Models →</a>
+    </div>
+  </div>
+
+  <!-- Block 3: Text - Image -->
+  <div class="category-block">
+    <div class="category-info">
+      <h2>Modern Supercars</h2>
+      <p>Built with cutting-edge engineering, modern supercars push the limits of speed and design. Lamborghini, Bugatti, and Koenigsegg models showcase futuristic aerodynamics and breathtaking acceleration.</p>
+      <a href="products.html#modern" class="view-btn">View Models →</a>
+    </div>
+    <div class="category-image fade-right">
+      <img src="images/lamborghini-huracan.jpg" alt="Modern Supercar">
+    </div>
+  </div>
+
+  <!-- Block 4: Image - Text -->
+  <div class="category-block">
+    <div class="category-image fade-left">
+      <img src="images/mclaren-720s.jpg" alt="Track-Ready Car">
+    </div>
+    <div class="category-info">
+      <h2>Track-Ready Cars</h2>
+      <p>Designed for precision handling and raw performance, track-ready cars are built to dominate circuits. McLaren, Porsche GT3 RS, and Nissan GT-R Nismo deliver race-inspired technology for serious drivers.</p>
+      <a href="products.html#track" class="view-btn">View Models →</a>
+    </div>
+  </div>
+</section>
+</section>
+{% endblock %}
