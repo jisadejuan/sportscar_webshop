@@ -6,7 +6,10 @@ product_bp = Blueprint('product', __name__)
 @product_bp.route('/products')
 def product_list():
     products = Product.query.all()
-    return render_template('products/list.html', products=products)
+    categories = {}
+    for car in products:
+        categories.setdefault(car.category, []).append(car)
+    return render_template('products/list.html', categories=categories)
 
 @product_bp.route('/products/<int:product_id>')
 def product_detail(product_id):
