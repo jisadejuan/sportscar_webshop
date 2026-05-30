@@ -1,1 +1,26 @@
+{% extends 'base.html'%}
+{% block content  %}
 
+<!-- Login Section -->
+<section class="login-page">
+  <div class="login-box">
+    <h1>Login with Gmail</h1>
+    <p>Access your SportsCar account using your Gmail credentials.</p>
+
+    <form class="login-form">
+      <label for="email">Gmail Address</label>
+      <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+
+    <div class="login-footer">
+      <p>Don't have an account? <a href="#">Sign up</a></p>
+      <p><a href="#">Forgot password?</a></p>
+    </div>
+  </div>
+</section>
+{% endblock %}
