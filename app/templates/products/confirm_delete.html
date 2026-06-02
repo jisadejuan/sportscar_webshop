@@ -1,1 +1,19 @@
+<body>
+  <h1>Confirm Delete</h1>
 
+  <!-- Flash messages -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+        <p class="{{ category }}"><strong>{{ message }}</strong></p>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+
+  <p>Are you sure you want to delete the product <strong>{{ product.name }}</strong>?</p>
+
+  <form method="POST" action="{{ url_for('product.delete_product', product_id=product.id) }}">
+    <button type="submit">Yes, Delete</button>
+    <a href="{{ url_for('product.list_products') }}">Cancel</a>
+  </form>
+</body>
