@@ -1,19 +1,17 @@
 <body>
-  <h1>Confirm Delete</h1>
+  <h1>Delete Product</h1>
 
-  <!-- Flash messages -->
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      {% for category, message in messages %}
-        <p class="{{ category }}"><strong>{{ message }}</strong></p>
-      {% endfor %}
-    {% endif %}
-  {% endwith %}
+  <p>Are you sure you want to delete <strong>{{ product.name }}</strong>?</p>
+  <p>Category: {{ product.category }}</p>
+  <p>Price: {{ product.price }}</p>
+  <p>Stock: {{ product.stock }}</p>
+  <p>This action cannot be undone.</p>
 
-  <p>Are you sure you want to delete the product <strong>{{ product.name }}</strong>?</p>
-
+  <!-- Confirmation form — POST triggers the actual delete -->
   <form method="POST" action="{{ url_for('product.delete_product', product_id=product.id) }}">
     <button type="submit">Yes, Delete</button>
-    <a href="{{ url_for('product.list_products') }}">Cancel</a>
   </form>
+
+  <!-- Cancel — goes back to list without deleting -->
+  <a href="{{ url_for('product.product_list') }}">Cancel</a>
 </body>
