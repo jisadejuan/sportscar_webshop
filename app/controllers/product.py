@@ -39,7 +39,7 @@ def product_detail(product_id):
     product = Product.query.get_or_404(product_id)
     return render_template('products/detail.html', product=product)
 
-# --- CREATE ---
+# --- CREATE ---------------------------------------------------------------
 @product_bp.route('/products/create', methods=['GET', 'POST'])
 def create_product():
     if request.method == 'POST':
@@ -50,15 +50,17 @@ def create_product():
         description = request.form.get('description')
         image = request.form.get('image')
 
+        # Validate — make sure required fields are not empty
         if not name or not category or not price:
             flash('Name, category, and price are required.', 'error')
             return redirect(url_for('product.create_product'))
 
+        # Create the new Product object and save it
         new_product = Product(
             name=name,
             category=category,
             price=float(price),
-            stock=int(stock),
+            stock=int(stock) if stock else 0,
             description=description,
             image=image
         )
@@ -68,8 +70,8 @@ def create_product():
         flash('Product added successfully!', 'success')
         return redirect(url_for('product.product_list'))
 
+    # GET request — show the empty form
     return render_template('products/create.html')
-
 # --- UPDATE ---
 @product_bp.route('/products/edit/<int:product_id>', methods=['GET', 'POST'])
 def edit_product(product_id):
