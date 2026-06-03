@@ -10,7 +10,7 @@
     {% endif %}
   {% endwith %}
 
-  <!-- Edit form -->
+  <!-- Edit form — pre-filled with existing data -->
   <form method="POST" action="{{ url_for('product.edit_product', product_id=product.id) }}">
     <label>Name:</label><br>
     <input type="text" name="name" value="{{ product.name }}" required><br><br>
@@ -30,7 +30,7 @@
     <label>Image URL:</label><br>
     <input type="text" name="image" value="{{ product.image }}"><br><br>
 
-    <button type="submit">Update Product</button>
+    <button type="submit">Save Changes</button>
     <a href="{{ url_for('product.product_list') }}">Cancel</a>
   </form>
 </body>
