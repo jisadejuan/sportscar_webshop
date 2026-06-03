@@ -52,7 +52,7 @@ def create_product():
 
         # Validate — make sure required fields are not empty
         if not name or not category or not price:
-            flash('Name, category, and price are required.', 'error')
+            flash('All fields are required.', 'error')
             return redirect(url_for('product.create_product'))
 
         # Create the new Product object and save it
@@ -72,6 +72,7 @@ def create_product():
 
     # GET request — show the empty form
     return render_template('products/create.html')
+    
 # --- UPDATE ---------------------------------------------------------------
 @product_bp.route('/products/<int:product_id>/edit', methods=['GET', 'POST'])
 def edit_product(product_id):
