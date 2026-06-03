@@ -92,7 +92,7 @@ def edit_product(product_id):
 
         # Validate — make sure required fields are not empty
         if not name or not category or not price:
-            flash('Name, category, and price are required.', 'error')
+            flash('All fields are required.', 'error')
             return redirect(url_for('product.edit_product', product_id=product_id))
 
         # Update the existing record's attributes
@@ -110,6 +110,7 @@ def edit_product(product_id):
 
     # GET — show the pre-filled edit form
     return render_template('products/edit.html', product=product)
+    
 # --- DELETE ---------------------------------------------------------------
 @product_bp.route('/products/<int:product_id>/delete', methods=['GET', 'POST'])
 def delete_product(product_id):
