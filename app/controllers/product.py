@@ -72,25 +72,43 @@ def create_product():
 
     # GET request — show the empty form
     return render_template('products/create.html')
-# --- UPDATE ---
-@product_bp.route('/products/edit/<int:product_id>', methods=['GET', 'POST'])
+# --- UPDATE ---------------------------------------------------------------
+@product_bp.route('/products/<int:product_id>/edit', methods=['GET', 'POST'])
 def edit_product(product_id):
-    product = Product.query.get_or_404(product_id)
+    product = Product.query.get(product_id)
+
+    if product is None:
+        flash('Product not found.', 'error')
+        return redirect(url_for('product.product_list'))
 
     if request.method == 'POST':
-        product.name = request.form.get('name')
-        product.category = request.form.get('category')
-        product.price = float(request.form.get('price'))
-        product.stock = int(request.form.get('stock'))
-        product.description = request.form.get('description')
-        product.image = request.form.get('image')
+        name = request.form.get('name')
+        category = request.form.get('category')
+        price = request.form.get('price')
+        stock = request.form.get('stock')
+        description = request.form.get('description')
+        image = request.form.get('image')
+
+        # Validate — make sure required fields are not empty
+        if not name or not category or not price:
+            flash('Name, category, and price are required.', 'error')
+            return redirect(url_for('product.edit_product', product_id=product_id))
+
+        # Update the existing record's attributes
+        product.name = name
+        product.category = category
+        product.price = float(price)
+        product.stock = int(stock) if stock else 0
+        product.description = description
+        product.image = image
 
         db.session.commit()
+
         flash('Product updated successfully!', 'success')
         return redirect(url_for('product.product_list'))
 
+    # GET — show the pre-filled edit form
     return render_template('products/edit.html', product=product)
-
 # --- DELETE ---
 @product_bp.route('/products/delete/<int:product_id>', methods=['GET', 'POST'])
 def delete_product(product_id):
