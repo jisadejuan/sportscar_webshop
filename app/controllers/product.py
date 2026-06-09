@@ -44,39 +44,32 @@ def product_detail(product_id):
     product = Product.query.get_or_404(product_id)
     return render_template('products/detail.html', product=product)
 
-# --- CREATE ---------------------------------------------------------------
-@product_bp.route('/products/create', methods=['GET', 'POST'])
+@product_bp.route('/admin/create', methods=['GET', 'POST'])
 def create_product():
     if request.method == 'POST':
-        name = request.form.get('name')
-        category = request.form.get('category')
-        price = request.form.get('price')
-        stock = request.form.get('stock')
-        description = request.form.get('description')
-        image = request.form.get('image')
+        name = request.form['name']
+        category = request.form['category']
+        price = request.form['price']
+        stock = request.form['stock']
+        description = request.form['description']
+        image = request.form['image']
 
-        # Validate — make sure required fields are not empty
-        if not name or not category or not price:
-            flash('All fields are required.', 'error')
-            return redirect(url_for('product.create_product'))
-
-        # Create the new Product object and save it
         new_product = Product(
             name=name,
             category=category,
-            price=float(price),
-            stock=int(stock) if stock else 0,
+            price=price,
+            stock=stock,
             description=description,
             image=image
         )
         db.session.add(new_product)
         db.session.commit()
 
-        flash('Product added successfully!', 'success')
-        return redirect(url_for('product.product_list'))
+        flash('Product created successfully!', 'success')
+        return redirect(url_for('product.admin_dashboard'))
 
-    # GET request — show the empty form
-    return render_template('products/create.html')
+    # Render the correct template path
+    return render_template('admin/create.html')
     
 # --- UPDATE ---------------------------------------------------------------
 @product_bp.route('/products/<int:product_id>/edit', methods=['GET', 'POST'])
