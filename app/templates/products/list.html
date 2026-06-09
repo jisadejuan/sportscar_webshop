@@ -23,7 +23,8 @@
 
           {% for product in products %}
           <div class="product-card">
-            <img src="{{ product.image }}" alt="{{ product.name }}">
+            <!-- FIXED IMAGE PATH -->
+            <img src="{{ url_for('static', filename='images/' ~ product.image) }}" alt="{{ product.name }}">
             <h3>{{ product.name }}</h3>
             <div class="product-info">
               <p class="price">{{ product.price }}</p>
