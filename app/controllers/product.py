@@ -110,20 +110,15 @@ def edit_product(product_id):
     return render_template('products/edit.html', product=product)
     
 # --- DELETE ---------------------------------------------------------------
-@product_bp.route('/products/<int:product_id>/delete', methods=['GET', 'POST'])
+@product_bp.route('/admin/delete/<int:product_id>', methods=['GET', 'POST'])
 def delete_product(product_id):
-    product = Product.query.get(product_id)
-
-    if product is None:
-        flash('Product not found.', 'error')
-        return redirect(url_for('product.product_list'))
+    product = Product.query.get_or_404(product_id)
 
     if request.method == 'POST':
         db.session.delete(product)
         db.session.commit()
+        flash('Product deleted successfully!', 'success')
+        return redirect(url_for('product.admin_dashboard'))
 
-        flash(f'{product.name} has been deleted.', 'success')
-        return redirect(url_for('product.product_list'))
-
-    # GET — show the confirmation page
-    return render_template('products/confirm_delete.html', product=product)
+    # FIXED TEMPLATE PATH
+    return render_template('admin/confirm_delete.html', product=product)
