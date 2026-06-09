@@ -43,22 +43,56 @@ def product_detail(product_id):
     product = Product.query.get_or_404(product_id)
     return render_template('products/detail.html', product=product)
 
-# --- CREATE ---
+# --- CREATE ---------------------------------------------------------------
 @product_bp.route('/admin/create', methods=['GET', 'POST'])
 def create_product():
     if request.method == 'POST':
-        name = request.form['name']
-        category = request.form['category']
-        price = request.form['price']
-        stock = request.form['stock']
-        description = request.form['description']
-        image = request.form['image']
+        name        = request.form.get('name')
+        category    = request.form.get('category')
+        price       = request.form.get('price')
+        stock       = request.form.get('stock')
+        description = request.form.get('description')
+        image       = request.form.get('image')
 
-        # Normally you'd save to DB here, but session is removed
-        flash('Product created successfully! (DB save skipped)', 'success')
+        # Validate required fields
+        if not name or not category or not price or not stock:
+            return redirect(url_for('product.create_product'))
+
+        # Create and save new product
+        new_product = Product(
+            name=name,
+            category=category,
+            price=price,
+            stock=stock,
+            description=description,
+            image=image
+        )
+        from app import db
+        db.session.add(new_product)
+        db.session.commit()
+
         return redirect(url_for('product.admin_dashboard'))
 
+    # GET — show empty form
     return render_template('admin/create.html')
+
+
+# --- DELETE ---------------------------------------------------------------
+@product_bp.route('/admin/delete/<int:product_id>', methods=['GET', 'POST'])
+def delete_product(product_id):
+    product = Product.query.get(product_id)
+
+    if product is None:
+        return redirect(url_for('product.admin_dashboard'))
+
+    if request.method == 'POST':
+        from app import db
+        db.session.delete(product)
+        db.session.commit()
+        return redirect(url_for('product.admin_dashboard'))
+
+    # GET — show confirm delete form
+    return render_template('admin/confirm_delete.html', product=product)
 
 # --- UPDATE ---
 @product_bp.route('/admin/edit/<int:product_id>', methods=['GET', 'POST'])
