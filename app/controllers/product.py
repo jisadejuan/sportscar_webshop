@@ -72,42 +72,24 @@ def create_product():
     return render_template('admin/create.html')
     
 # --- UPDATE ---------------------------------------------------------------
-@product_bp.route('/products/<int:product_id>/edit', methods=['GET', 'POST'])
+@product_bp.route('/admin/edit/<int:product_id>', methods=['GET', 'POST'])
 def edit_product(product_id):
-    product = Product.query.get(product_id)
-
-    if product is None:
-        flash('Product not found.', 'error')
-        return redirect(url_for('product.product_list'))
+    product = Product.query.get_or_404(product_id)
 
     if request.method == 'POST':
-        name = request.form.get('name')
-        category = request.form.get('category')
-        price = request.form.get('price')
-        stock = request.form.get('stock')
-        description = request.form.get('description')
-        image = request.form.get('image')
-
-        # Validate — make sure required fields are not empty
-        if not name or not category or not price:
-            flash('All fields are required.', 'error')
-            return redirect(url_for('product.edit_product', product_id=product_id))
-
-        # Update the existing record's attributes
-        product.name = name
-        product.category = category
-        product.price = float(price)
-        product.stock = int(stock) if stock else 0
-        product.description = description
-        product.image = image
+        product.name = request.form['name']
+        product.category = request.form['category']
+        product.price = request.form['price']
+        product.stock = request.form['stock']
+        product.description = request.form['description']
+        product.image = request.form['image']
 
         db.session.commit()
-
         flash('Product updated successfully!', 'success')
-        return redirect(url_for('product.product_list'))
+        return redirect(url_for('product.admin_dashboard'))
 
-    # GET — show the pre-filled edit form
-    return render_template('products/edit.html', product=product)
+    # FIXED TEMPLATE PATH
+    return render_template('admin/edit.html', product=product)
     
 # --- DELETE ---------------------------------------------------------------
 @product_bp.route('/admin/delete/<int:product_id>', methods=['GET', 'POST'])
