@@ -970,11 +970,11 @@ html {
    CREATE PAGE STYLES
    ================================ */
 
-/* Full wrapper fills screen and blends with footer */
-.admin-create-wrapper {
+/* Page wrapper fills screen and keeps footer visible */
+.admin-create-page {
   width: 100%;
-  min-height: 100vh;              /* ensures footer stays visible */
-  background: #fff;               /* white base */
+  min-height: 100vh;          /* ensures footer sits at bottom */
+  background: #fff;           /* white base */
   display: flex;
   justify-content: center;
   align-items: flex-start;
@@ -1001,24 +1001,17 @@ html {
   text-align: center;
 }
 
-/* Messages */
-.admin-create-messages { margin: 20px 0; }
-.admin-create-message.success { color: #4caf50; }
-.admin-create-message.error { color: #ff3333; }
-
-/* Form */
-.admin-create-form {
+/* Form groups */
+.admin-create-group {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  margin-bottom: 20px;
 }
-
 .admin-create-group label {
   margin-bottom: 8px;
   color: #ff3333;
   font-weight: bold;
 }
-
 .admin-create-group input,
 .admin-create-group textarea {
   padding: 12px;
@@ -1027,7 +1020,6 @@ html {
   background: #1a1a1a;
   color: #fff;
 }
-
 .admin-create-group input:focus,
 .admin-create-group textarea:focus {
   outline: none;
@@ -1041,7 +1033,6 @@ html {
   justify-content: center;
   gap: 15px;
 }
-
 .admin-btn-save {
   padding: 12px 20px;
   background: #ff3333;
@@ -1052,9 +1043,7 @@ html {
   transition: background 0.3s ease;
 }
 .admin-btn-save:hover { 
-background: #cc0000; 
-}
-
+   background: #cc0000; }
 .admin-btn-cancel {
   padding: 12px 20px;
   background: #444;
@@ -1063,5 +1052,4 @@ background: #cc0000;
   border-radius: 6px;
   transition: background 0.3s ease;
 }
-.admin-btn-cancel:hover { 
-   background: #666; }
+.admin-btn-cancel:hover { background: #666; }
