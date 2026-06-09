@@ -7,11 +7,9 @@
   <p>Stock: {{ product.stock }}</p>
   <p>This action cannot be undone.</p>
 
-  <!-- Confirmation form — POST triggers the actual delete -->
   <form method="POST" action="{{ url_for('product.delete_product', product_id=product.id) }}">
     <button type="submit">Yes, Delete</button>
   </form>
 
-  <!-- Cancel — goes back to list without deleting -->
   <a href="{{ url_for('product.product_list') }}">Cancel</a>
 </body>
