@@ -4,7 +4,6 @@
 <section class="admin-dashboard">
   <h1>Admin Dashboard</h1>
 
-  <!-- Flash messages -->
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
       {% for category, message in messages %}
@@ -13,12 +12,10 @@
     {% endif %}
   {% endwith %}
 
-  <!-- Add New Product -->
   <div class="admin-actions">
     <a href="{{ url_for('product.create_product') }}" class="btn-add">+ Add New Product</a>
   </div>
 
-  <!-- Product Management Table -->
   <table class="admin-table">
     <thead>
       <tr>
