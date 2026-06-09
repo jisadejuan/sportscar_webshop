@@ -750,23 +750,22 @@ html {
   color: #ff3333;
   margin-top: 0;
   margin-bottom: 15px;
-  background: #111; /* dark background for contrast */
+  background: #111; 
   padding: 5px 18px;
   border: 2px solid #ff3333;
   border-radius: 8px;
   font-weight: bold;
-  box-shadow: 0 0 6px #ff3333; /* softer glow */
-  display: inline-block; /* box fits the text */
+  box-shadow: 0 0 6px #ff3333; 
+  display: inline-block; 
 }
 
-/* Center the box itself */
 .products-section {
-  text-align: center; /* centers the h2 box inside the section */
+  text-align: center; 
 }
 
 .products-grid {
   display: grid;
-  grid-template-columns: 1fr; /* single product per row */
+  grid-template-columns: 1fr; 
   gap: 25px;
   width: 100%;
 }
@@ -781,7 +780,7 @@ html {
   text-align: left;
   box-shadow: 0 4px 10px rgba(0,0,0,0.6);
   width: 100%;
-  max-width: 100%; /* wider cards to use more space */
+  max-width: 100%; 
   margin: 0 auto;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -793,7 +792,7 @@ html {
 
 .product-card img {
   width: 100%;
-  height:max-content; /* bigger image height */
+  height:max-content; 
   object-fit: contain;
   border-radius: 8px;
   margin-bottom: 0;
@@ -802,12 +801,11 @@ html {
 .product-card h3 {
   color: #ff3333;
   margin: 0px 0;
-  font-size: 1.8em; /* bigger font size */
+  font-size: 1.8em; 
   font-weight: bold;
   text-align: left;
 }
 
-/* Product Info */
 .product-info {
   margin: 6px 0;
   font-size: 0.9em;
@@ -831,17 +829,16 @@ html {
   margin-top: 3px;
 }
 
-/* Action Buttons */
 .product-actions {
   margin-top: 10px;
   display: flex;
-  justify-content: space-between; /* left group stays left, right group goes right */
+  justify-content: space-between; 
   align-items: center;
 }
 
 .left-buttons {
   display: flex;
-  gap: 10px; /* spacing between left-side buttons */
+  gap: 10px; 
 }
 
 .right-buttons {
@@ -873,4 +870,98 @@ html {
 
 .btn-buy:hover {
   background: #cc0000;
+}
+
+/* ================================
+   ADMIN PAGE STYLES
+   ================================ */
+.admin-dashboard-container {
+  padding: 60px 20px;
+  background: linear-gradient(to bottom, #111, #222);
+  color: white;
+  text-align: center;
+}
+
+.admin-dashboard-title {
+  color: #ff3333;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #444;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.admin-messages {
+  margin: 20px auto;
+  max-width: 800px;
+}
+.admin-message-success { color: #4caf50; }
+.admin-message-error { color: #ff3333; }
+
+.admin-actions-container {
+  margin: 20px 0;
+}
+.admin-btn-add {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #ff3333;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+.admin-btn-add:hover { background: #cc0000; }
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  background: #1a1a1a;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 12px rgba(255,51,51,0.3);
+}
+.admin-th, .admin-td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #333;
+}
+.admin-th {
+  background: #222;
+  color: #ff3333;
+  text-transform: uppercase;
+}
+.admin-row:hover { background: #2a2a2a; }
+
+.admin-btn-edit, .admin-btn-delete {
+  padding: 6px 12px;
+  border-radius: 4px;
+  text-decoration: none;
+  margin: 0 5px;
+  transition: background 0.3s ease;
+}
+.admin-btn-edit {
+  background: #3498db;
+  color: #fff;
+}
+.admin-btn-edit:hover { background: #217dbb; }
+.admin-btn-delete {
+  background: #e74c3c;
+  color: #fff;
+}
+.admin-btn-delete:hover { background: #c0392b; }
+
+@media (max-width: 768px) {
+  .admin-table, .admin-table thead, .admin-table tbody, .admin-th, .admin-td, .admin-row {
+    display: block;
+    width: 100%;
+  }
+  .admin-row {
+    margin-bottom: 15px;
+    border-bottom: 2px solid #333;
+  }
+  .admin-td {
+    text-align: left;
+    padding: 10px;
+  }
 }
