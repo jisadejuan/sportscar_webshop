@@ -1,6 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app.models.product import Product
-from app import db
 
 product_bp = Blueprint('product', __name__)
 
@@ -38,12 +37,13 @@ def product_list():
 def admin_dashboard():
     products = Product.query.all()
     return render_template('admin/admin.html', products=products)
-    
+
 @product_bp.route('/products/<int:product_id>')
 def product_detail(product_id):
     product = Product.query.get_or_404(product_id)
     return render_template('products/detail.html', product=product)
 
+# --- CREATE ---
 @product_bp.route('/admin/create', methods=['GET', 'POST'])
 def create_product():
     if request.method == 'POST':
@@ -54,24 +54,13 @@ def create_product():
         description = request.form['description']
         image = request.form['image']
 
-        new_product = Product(
-            name=name,
-            category=category,
-            price=price,
-            stock=stock,
-            description=description,
-            image=image
-        )
-        db.session.add(new_product)
-        db.session.commit()
-
-        flash('Product created successfully!', 'success')
+        # Normally you'd save to DB here, but session is removed
+        flash('Product created successfully! (DB save skipped)', 'success')
         return redirect(url_for('product.admin_dashboard'))
 
-    # Render the correct template path
     return render_template('admin/create.html')
-    
-# --- UPDATE ---------------------------------------------------------------
+
+# --- UPDATE ---
 @product_bp.route('/admin/edit/<int:product_id>', methods=['GET', 'POST'])
 def edit_product(product_id):
     product = Product.query.get_or_404(product_id)
@@ -84,23 +73,20 @@ def edit_product(product_id):
         product.description = request.form['description']
         product.image = request.form['image']
 
-        db.session.commit()
-        flash('Product updated successfully!', 'success')
+        # Normally you'd commit changes here, but session is removed
+        flash('Product updated successfully! (DB update skipped)', 'success')
         return redirect(url_for('product.admin_dashboard'))
 
-    # FIXED TEMPLATE PATH
     return render_template('admin/edit.html', product=product)
-    
-# --- DELETE ---------------------------------------------------------------
+
+# --- DELETE ---
 @product_bp.route('/admin/delete/<int:product_id>', methods=['GET', 'POST'])
 def delete_product(product_id):
     product = Product.query.get_or_404(product_id)
 
     if request.method == 'POST':
-        db.session.delete(product)
-        db.session.commit()
-        flash('Product deleted successfully!', 'success')
+        # Normally you'd delete from DB here, but session is removed
+        flash('Product deleted successfully! (DB delete skipped)', 'success')
         return redirect(url_for('product.admin_dashboard'))
 
-    # FIXED TEMPLATE PATH
     return render_template('admin/confirm_delete.html', product=product)
