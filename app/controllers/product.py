@@ -3,7 +3,6 @@ from app.models.product import Product
 
 product_bp = Blueprint('product', __name__)
 
-# --- STATIC PAGES ---
 @product_bp.route('/')
 def home():
     return render_template('public/index.html')
