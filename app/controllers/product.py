@@ -38,7 +38,6 @@ def product_list():
 def admin_dashboard():
     products = Product.query.all()
     return render_template('admin/products/admin.html', products=products)
-
 @product_bp.route('/products/<int:product_id>')
 def product_detail(product_id):
     product = Product.query.get_or_404(product_id)
