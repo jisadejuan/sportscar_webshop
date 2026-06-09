@@ -73,12 +73,10 @@ def edit_product(product_id):
         product.description = request.form['description']
         product.image = request.form['image']
 
-        # Normally you'd commit changes here, but session is removed
-        flash('Product updated successfully! (DB update skipped)', 'success')
+        # Removed db.session.commit() and flash()
         return redirect(url_for('product.admin_dashboard'))
 
     return render_template('admin/edit.html', product=product)
-
 # --- DELETE ---
 @product_bp.route('/admin/delete/<int:product_id>', methods=['GET', 'POST'])
 def delete_product(product_id):
