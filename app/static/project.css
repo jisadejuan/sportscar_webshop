@@ -970,13 +970,12 @@ html {
    CREATE PAGE STYLES
    ================================ */
 
-/* Full-screen container */
-.admin-create-full {
+/* Body wrapper */
+.admin-create-body {
   width: 100%;
-  min-height: 100vh;              /* fills entire viewport height */
+  min-height: 100vh;
+  background: #fff;                 /* white base */
   padding: 60px 20px;
-  background: linear-gradient(to bottom, #111, #222);
-  color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -992,30 +991,21 @@ html {
 }
 
 /* Messages */
-.admin-create-messages {
-  margin: 20px auto;
-  width: 100%;
-  max-width: 900px;
-}
+.admin-create-messages { margin: 20px auto; width: 100%; max-width: 900px; }
 .admin-create-message.success { color: #4caf50; }
 .admin-create-message.error { color: #ff3333; }
 
 /* Form */
 .admin-create-form {
   width: 100%;
-  max-width: 900px;               /* keeps inputs readable */
-  background: #1a1a1a;
+  max-width: 900px;
+  background: linear-gradient(to bottom, #111, #222); /* dark blend */
   padding: 30px;
   border-radius: 8px;
   box-shadow: 0 0 12px rgba(255,51,51,0.3);
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.admin-create-group {
-  display: flex;
-  flex-direction: column;
 }
 
 .admin-create-group label {
@@ -1029,7 +1019,7 @@ html {
   padding: 12px;
   border: 1px solid #444;
   border-radius: 6px;
-  background: #111;
+  background: #1a1a1a;
   color: #fff;
 }
 
@@ -1067,24 +1057,3 @@ html {
   transition: background 0.3s ease;
 }
 .admin-btn-cancel:hover { background: #666; }
-.admin-btn-save {
-  padding: 10px 18px;
-  background: #ff3333;
-  color: #fff;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-.admin-btn-save:hover { background: #cc0000; }
-
-.admin-btn-cancel {
-  padding: 10px 18px;
-  background: #444;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 6px;
-  transition: background 0.3s ease;
-}
-.admin-btn-cancel:hover { background: #666; }
-
