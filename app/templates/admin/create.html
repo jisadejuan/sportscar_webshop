@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section id="admin-create-section" class="admin-create-container">
+<section id="admin-create-body" class="admin-create-body">
   <h1 class="admin-create-title">Add New Product</h1>
 
   {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
-      <div id="admin-create-messages" class="admin-create-messages">
+      <div class="admin-create-messages">
         {% for category, message in messages %}
           <p class="admin-create-message admin-create-{{ category }}"><strong>{{ message }}</strong></p>
         {% endfor %}
@@ -14,7 +14,7 @@
     {% endif %}
   {% endwith %}
 
-  <form id="admin-create-form" class="admin-create-form" method="POST" action="{{ url_for('product.create_product') }}">
+  <form class="admin-create-form" method="POST" action="{{ url_for('product.create_product') }}">
     <div class="admin-create-group">
       <label for="create-name">Name:</label>
       <input type="text" id="create-name" name="name" required>
