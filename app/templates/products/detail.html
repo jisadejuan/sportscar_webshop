@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 <h1>{{ product.name }}</h1>
-<img src="{{ product.image }}" alt="{{ product.name }}">
+
+<!-- FIXED IMAGE PATH -->
+<img src="{{ url_for('static', filename='images/' ~ product.image) }}" alt="{{ product.name }}">
+
 <p><strong>Category:</strong> {{ product.category }}</p>
 <p><strong>Price:</strong> {{ product.price }}</p>
 <p><strong>Stock:</strong> {{ product.stock }}</p>
 <p><strong>Description:</strong> {{ product.description }}</p>
+
 <a href="{{ url_for('product.product_list') }}">Back to list</a>
 {% endblock %}
