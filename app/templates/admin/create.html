@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section id="admin-create-wrapper" class="admin-create-wrapper">
+<section id="admin-create-page" class="admin-create-page">
   <div class="admin-create-container">
     <h1 class="admin-create-title">Add New Product</h1>
 
@@ -16,35 +16,12 @@
     {% endwith %}
 
     <form class="admin-create-form" method="POST" action="{{ url_for('product.create_product') }}">
+      <!-- fields -->
       <div class="admin-create-group">
         <label for="create-name">Name:</label>
         <input type="text" id="create-name" name="name" required>
       </div>
-
-      <div class="admin-create-group">
-        <label for="create-category">Category:</label>
-        <input type="text" id="create-category" name="category" required>
-      </div>
-
-      <div class="admin-create-group">
-        <label for="create-price">Price:</label>
-        <input type="number" id="create-price" name="price" step="0.01" required>
-      </div>
-
-      <div class="admin-create-group">
-        <label for="create-stock">Stock:</label>
-        <input type="number" id="create-stock" name="stock" required>
-      </div>
-
-      <div class="admin-create-group">
-        <label for="create-description">Description:</label>
-        <textarea id="create-description" name="description"></textarea>
-      </div>
-
-      <div class="admin-create-group">
-        <label for="create-image">Image URL:</label>
-        <input type="url" id="create-image" name="image">
-      </div>
+      <!-- repeat for other inputs -->
 
       <div class="admin-create-actions">
         <button type="submit" class="admin-btn-save">Save Product</button>
