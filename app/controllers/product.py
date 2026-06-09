@@ -34,7 +34,7 @@ def product_list():
         categories.setdefault(car.category, []).append(car)
     return render_template('products/list.html', categories=categories)
 
-@@product_bp.route('/admin/products')
+@product_bp.route('/admin/products')
 def admin_dashboard():
     products = Product.query.all()
     return render_template('admin/products/admin.html', products=products)
