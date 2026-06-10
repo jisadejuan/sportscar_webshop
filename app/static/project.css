@@ -971,12 +971,10 @@ html {
    ================================ */
 .admin-create-container {
   padding: 60px 20px;
+  min-height: 100vh;                       /* fills screen like admin.html */
   background: linear-gradient(to bottom, #111, #222);
   color: white;
-  max-width: 900px;
-  margin: 0 auto;
-  border-radius: 8px;
-  box-shadow: 0 0 12px rgba(255,51,51,0.3);
+  text-align: center;
 }
 
 .admin-create-title {
@@ -997,14 +995,15 @@ html {
 
 /* Form */
 .admin-create-form {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #1a1a1a;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px rgba(255,51,51,0.3);
   display: flex;
   flex-direction: column;
   gap: 20px;
-}
-
-.admin-create-group {
-  display: flex;
-  flex-direction: column;
   text-align: left;
 }
 
@@ -1019,7 +1018,7 @@ html {
   padding: 12px;
   border: 1px solid #333;
   border-radius: 6px;
-  background: #1a1a1a;
+  background: #111;
   color: #fff;
 }
 
@@ -1060,7 +1059,7 @@ html {
 
 /* Responsive */
 @media (max-width: 768px) {
-  .admin-create-container {
-    padding: 30px 15px;
+  .admin-create-form {
+    padding: 20px;
   }
 }
