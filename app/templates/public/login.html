@@ -1,28 +1,34 @@
-{% extends 'base.html'%}
-{% block content  %}
+{% extends 'base.html' %}
+{% block content %}
 
-<!-- Login Section -->
-<section class="login-page">
-  <div class="login-box">
-    <h1>Login with Gmail</h1>
-    <p>Access your SportsCar account using your Gmail credentials.</p>
+<section id="user-login-section" class="user-login-container">
+  <h1 class="user-login-title">User Login</h1>
 
-    <form class="login-form" method="POST" action="{{ url_for('auth.user_login') }}">
-      <label for="email">Gmail Address</label>
-      <input type="email" id="email" name="username" placeholder="example@gmail.com" required>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="user-login-messages">
+        {% for category, message in messages %}
+          <p class="user-login-message user-login-{{ category }}"><strong>{{ message }}</strong></p>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-      <button type="submit" class="btn-login">Login</button>
-    </form>
-
-    <div class="login-footer">
-      <p>Don't have an account? <a href="#">Sign up</a></p>
-      <p><a href="#">Forgot password?</a></p>
-      <!-- Admin navigation link -->
-      <p><a href="{{ url_for('auth.admin_login') }}">Admin Login</a></p>
+  <form id="user-login-form" class="user-login-form" method="POST" action="{{ url_for('auth.user_login') }}">
+    <div class="user-login-group">
+      <label for="login-email">Email</label>
+      <input type="email" id="login-email" name="email" required>
     </div>
-  </div>
+
+    <div class="user-login-group">
+      <label for="login-password">Password</label>
+      <input type="password" id="login-password" name="password" required>
+    </div>
+
+    <div class="user-login-actions">
+      <button type="submit" class="user-btn-login">Login</button>
+    </div>
+  </form>
 </section>
+
 {% endblock %}
