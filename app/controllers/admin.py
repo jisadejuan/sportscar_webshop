@@ -42,6 +42,7 @@ def admin_login():
             flash('No admin account found, please sign up first.', 'warning')
             return redirect(url_for('admin.admin_signup'))
 
+    # GET request → show login page
     return render_template('admin/admin_login.html')
 
 # --- ADMIN DASHBOARD ---
