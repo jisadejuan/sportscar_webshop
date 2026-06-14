@@ -5,7 +5,7 @@ from app.models.admin import Admin
 admin_bp = Blueprint('admin', __name__)
 
 # --- ADMIN SIGN UP ---
-@admin_bp.route('/signup', methods=['GET', 'POST'])
+@admin_bp.route('/admin_signup', methods=['GET', 'POST'])
 def admin_signup():
     if request.method == 'POST':
         email = request.form['email']
@@ -26,7 +26,7 @@ def admin_signup():
     return render_template('admin/admin_signup.html')
 
 # --- ADMIN LOGIN ---
-@admin_bp.route('/login', methods=['GET', 'POST'])
+@admin_bp.route('/admin_login', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
         email = request.form['email']
