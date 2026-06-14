@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from app import db
 from app.models.user import User
 
@@ -34,10 +34,12 @@ def user_login():
 
         user = User.query.filter_by(email=email, password=password).first()
         if user:
+            session['user_id'] = user.id   # 👉 save user session
             flash('Login successful!', 'success')
             return redirect(url_for('product.home'))  # or user dashboard
         else:
             flash('No account found, please sign up first.', 'warning')
             return redirect(url_for('auth.user_signup'))
 
-    return render_template('public/login.html')
+    # GET request → unified login page
+    return render_template('login.html')
