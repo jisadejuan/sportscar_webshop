@@ -12,19 +12,21 @@ def signup():
         email = request.form['email']
         password = request.form['password']
 
+        # check if user already exists
         existing_user = User.query.filter_by(email=email).first()
         if existing_user:
-            flash('Email already registered, please log in.', 'danger')
-            return redirect(url_for('auth.signup'))
+            flash('Account already exists, please log in.', 'danger')
+            return redirect(url_for('auth.login'))
 
+        # create new user
         new_user = User(email=email, password=password)
         db.session.add(new_user)
         db.session.commit()
 
-        flash('Sign‑up successful! You can now log in.', 'success')
+        flash('Account signed up successfully!', 'success')
         return redirect(url_for('auth.login'))
 
-    return render_template('public/signup.html')
+    return render_template('public/user_signup.html')
 
 # --- USER LOGIN ---
 @auth_bp.route('/login', methods=['GET', 'POST'])
@@ -38,6 +40,7 @@ def login():
             flash('Login successful!', 'success')
             return redirect(url_for('product.home'))  # or redirect to user dashboard
         else:
-            flash('Invalid email or password.', 'danger')
+            flash('No account found, please sign up first.', 'warning')
+            return redirect(url_for('auth.signup'))
 
-    return render_template('public/login.html')
+    return render_template('public/user_login.html')
