@@ -26,23 +26,23 @@ def categories():
 # --- READ ONLY ---
 @product_bp.route('/products')
 def product_list():
-    products = Product.query.all()
+    items = Product.query.all()
     categories = {}
-    for car in products:
+    for car in items:
         categories.setdefault(car.category, []).append(car)
     return render_template('products/list.html', categories=categories)
 
 @product_bp.route('/products/<int:product_id>')
 def product_detail(product_id):
-    product = Product.query.get(product_id)
-    if product is None:
+    item = Product.query.get(product_id)
+    if item is None:
         # Kung wala ang product, ipakita na lang ulit ang list
-        products = Product.query.all()
+        items = Product.query.all()
         categories = {}
-        for car in products:
+        for car in items:
             categories.setdefault(car.category, []).append(car)
         return render_template('products/list.html', categories=categories)
-    return render_template('products/detail.html', product=product)
+    return render_template('products/detail.html', item=item)
 
 # --- SEARCH ---
 @product_bp.route('/products/search')
@@ -50,14 +50,13 @@ def search():
     query = request.args.get('q', '')  # kunin ang input mula sa search bar
     if not query:
         # kung walang laman, ipakita lahat ng products
-        products = Product.query.all()
+        items = Product.query.all()
     else:
         # hanapin yung mga products na kapareho o malapit ang pangalan
-        products = Product.query.filter(Product.name.ilike(f"%{query}%")).all()
+        items = Product.query.filter(Product.name.ilike(f"%{query}%")).all()
 
     categories = {}
-    for car in products:
+    for car in items:
         categories.setdefault(car.category, []).append(car)
 
-    # ipasa rin ang query sa template para makita kung ano ang hinanap
     return render_template('products/list.html', categories=categories, search=query)
