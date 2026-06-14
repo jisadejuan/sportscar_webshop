@@ -24,6 +24,7 @@
   <!-- Admin Login Box -->
   <div class="login-box">
     <h2>Log in as Admin</h2>
+    <!-- ✅ Siguraduhin na POST at tamang route -->
     <form method="POST" action="{{ url_for('admin.admin_login') }}">
       <label for="admin-email">Gmail Address</label>
       <input type="email" id="admin-email" name="email" placeholder="admin@gmail.com" required>
