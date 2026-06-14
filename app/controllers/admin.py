@@ -57,11 +57,24 @@ def create_product():
 
     if request.method == 'POST':
         name = request.form['name']
+        category = request.form['category']
         price = request.form['price']
-        new_product = Product(name=name, price=price)
+        stock = request.form['stock']
+        description = request.form['description']
+        image = request.form['image']
+
+        new_product = Product(
+            name=name,
+            category=category,
+            price=price,
+            stock=stock,
+            description=description,
+            image=image
+        )
         db.session.add(new_product)
         db.session.commit()
         return redirect(url_for('admin.dashboard'))
+
     return render_template('admin/create.html')
 
 # --- EDIT PRODUCT ---
