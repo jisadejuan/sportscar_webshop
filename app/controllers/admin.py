@@ -23,7 +23,6 @@ def admin_signup():
         flash('Admin account signed up successfully!', 'success')
         return redirect(url_for('admin.admin_login'))
 
-    # ✅ Correct template for admin
     return render_template('admin/admin_signup.html')
 
 # --- ADMIN LOGIN ---
