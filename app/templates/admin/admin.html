@@ -15,6 +15,8 @@
         <th class="admin-th">Category</th>
         <th class="admin-th">Price</th>
         <th class="admin-th">Stock</th>
+        <th class="admin-th">Image</th>
+        <th class="admin-th">Description</th>
         <th class="admin-th">Actions</th>
       </tr>
     </thead>
@@ -25,6 +27,14 @@
         <td class="admin-td">{{ product.category }}</td>
         <td class="admin-td">{{ product.price }}</td>
         <td class="admin-td">{{ product.stock }}</td>
+        <td class="admin-td">
+          {% if product.image %}
+            <img src="{{ product.image }}" alt="{{ product.name }}" style="max-width:100px;">
+          {% else %}
+            No image
+          {% endif %}
+        </td>
+        <td class="admin-td">{{ product.description }}</td>
         <td class="admin-td">
           <!-- Edit button -->
           <a href="{{ url_for('admin.edit_product', product_id=product.id) }}" class="admin-btn-edit">Edit</a>
