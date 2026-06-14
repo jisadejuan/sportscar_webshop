@@ -1,14 +1,15 @@
-{% extends 'base.html' %}
-{% block content %}
+{% extends 'base.html'%}
+{% block content  %}
 
+<!-- Login Section -->
 <section class="login-page">
   <div class="login-box">
-    <h1>Admin Login</h1>
-    <p>Access the SportsCar admin dashboard.</p>
+    <h1>Login with Gmail</h1>
+    <p>Access your SportsCar account using your Gmail credentials.</p>
 
-    <form class="login-form" method="POST" action="{{ url_for('auth.admin_login') }}">
-      <label for="username">Admin Username</label>
-      <input type="text" id="username" name="username" placeholder="Enter admin username" required>
+    <form class="login-form" method="POST" action="{{ url_for('auth.user_login') }}">
+      <label for="email">Gmail Address</label>
+      <input type="email" id="email" name="username" placeholder="example@gmail.com" required>
 
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="Enter your password" required>
@@ -17,10 +18,11 @@
     </form>
 
     <div class="login-footer">
-      <p><a href="{{ url_for('product.home') }}">Back to Home</a></p>
-      <p><a href="{{ url_for('auth.user_login') }}">User Login</a></p>
+      <p>Don't have an account? <a href="#">Sign up</a></p>
+      <p><a href="#">Forgot password?</a></p>
+      <!-- Admin navigation link -->
+      <p><a href="{{ url_for('auth.admin_login') }}">Admin Login</a></p>
     </div>
   </div>
 </section>
-
 {% endblock %}
