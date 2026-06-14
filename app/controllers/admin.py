@@ -5,29 +5,30 @@ from app.models.admin_user import AdminUser
 # Define the blueprint FIRST
 admin_bp = Blueprint('admin', __name__)
 
-# --- SIGN UP ---
+# --- ADMIN SIGN UP ---
 @admin_bp.route('/signup', methods=['GET', 'POST'])
 def admin_signup():
     if request.method == 'POST':
         email = request.form['email']
         password = request.form['password']
 
+        # check if admin already exists
         existing_admin = AdminUser.query.filter_by(email=email).first()
         if existing_admin:
-            flash('Admin email already registered, please log in.', 'danger')
-            return redirect(url_for('admin.admin_signup'))
+            flash('Admin account already exists, please log in.', 'danger')
+            return redirect(url_for('admin.admin_login'))
 
-        new_admin = AdminUser(email=email)
-        new_admin.password = password  # simpleng save muna, walang hashing kung di pa kayo nag-aaral ng sessions/security
+        # create new admin
+        new_admin = AdminUser(email=email, password=password)
         db.session.add(new_admin)
         db.session.commit()
 
-        flash('Admin signed up successfully, log in now.', 'success')
+        flash('Admin account signed up successfully!', 'success')
         return redirect(url_for('admin.admin_login'))
 
     return render_template('admin/admin_signup.html')
 
-# --- LOGIN ---
+# --- ADMIN LOGIN ---
 @admin_bp.route('/login', methods=['GET', 'POST'])
 def admin_login():
     if request.method == 'POST':
@@ -36,14 +37,15 @@ def admin_login():
 
         admin = AdminUser.query.filter_by(email=email, password=password).first()
         if admin:
-            flash('Login successful!', 'success')
+            flash('Admin login successful!', 'success')
             return redirect(url_for('admin.admin_dashboard'))
         else:
-            flash('Invalid email or password.', 'danger')
+            flash('No admin account found, please sign up first.', 'warning')
+            return redirect(url_for('admin.admin_signup'))
 
     return render_template('admin/admin_login.html')
 
-# --- DASHBOARD ---
+# --- ADMIN DASHBOARD ---
 @admin_bp.route('/dashboard')
 def admin_dashboard():
     return render_template('admin/admin_dashboard.html')
