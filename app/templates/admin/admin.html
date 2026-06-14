@@ -26,8 +26,13 @@
         <td class="admin-td">{{ product.price }}</td>
         <td class="admin-td">{{ product.stock }}</td>
         <td class="admin-td">
+          <!-- Edit button -->
           <a href="{{ url_for('admin.edit_product', product_id=product.id) }}" class="admin-btn-edit">Edit</a>
-          <a href="{{ url_for('admin.delete_product', product_id=product.id) }}" class="admin-btn-delete">Delete</a>
+
+          <!-- Delete button (POST form) -->
+          <form method="POST" action="{{ url_for('admin.delete_product', product_id=product.id) }}" style="display:inline;">
+            <button type="submit" class="admin-btn-delete">Delete</button>
+          </form>
         </td>
       </tr>
       {% endfor %}
