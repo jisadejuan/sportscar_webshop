@@ -10,6 +10,10 @@
     <p>Price: {{ product.price }}</p>
     <p>Stock: {{ product.stock }}</p>
     <p class="delete-warning">This action cannot be undone.</p>
+
+    <div class="delete-product-preview">
+      <img src="{{ url_for('static', filename='images/' ~ product.image) }}" alt="{{ product.name }}">
+    </div>
   </div>
 
   <form id="delete-product-form" class="delete-product-form" method="POST" action="{{ url_for('product.delete_product', product_id=product.id) }}">
