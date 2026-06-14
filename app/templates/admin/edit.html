@@ -14,7 +14,7 @@
     {% endif %}
   {% endwith %}
 
-<form id="edit-product-form" class="edit-product-form" method="POST" action="{{ url_for('admin.edit_product', product_id=product.id) }}">
+  <form id="edit-product-form" class="edit-product-form" method="POST" action="{{ url_for('admin.edit_product', product_id=product.id) }}">
     <div class="edit-product-group">
       <label for="edit-name">Name</label>
       <input type="text" id="edit-name" name="name" value="{{ product.name }}" required>
@@ -51,7 +51,7 @@
 
     <div class="edit-product-actions">
       <button type="submit" class="edit-btn-save">Save Changes</button>
-      <a href="{{ url_for('product.admin_dashboard') }}" class="edit-btn-cancel">Cancel</a>
+      <a href="{{ url_for('admin.admin_dashboard') }}" class="edit-btn-cancel">Cancel</a>
     </div>
   </form>
 </section>
