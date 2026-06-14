@@ -12,13 +12,11 @@ def admin_signup():
         email = request.form['email']
         password = request.form['password']
 
-        # check if admin already exists
         existing_admin = AdminUser.query.filter_by(email=email).first()
         if existing_admin:
             flash('Admin account already exists, please log in.', 'danger')
             return redirect(url_for('admin.admin_login'))
 
-        # create new admin
         new_admin = AdminUser(email=email, password=password)
         db.session.add(new_admin)
         db.session.commit()
@@ -26,6 +24,7 @@ def admin_signup():
         flash('Admin account signed up successfully!', 'success')
         return redirect(url_for('admin.admin_login'))
 
+    # ✅ Correct template for admin
     return render_template('admin/admin_signup.html')
 
 # --- ADMIN LOGIN ---
