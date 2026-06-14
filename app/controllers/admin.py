@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app import db
 from app.models.admin_user import AdminUser
 
-# Define the blueprint FIRST
 admin_bp = Blueprint('admin', __name__)
 
 # --- ADMIN SIGN UP ---
