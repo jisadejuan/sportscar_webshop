@@ -4,7 +4,6 @@ from app.models.user import User
 
 auth_bp = Blueprint('auth', __name__)
 
-# --- USER SIGN UP ---
 @auth_bp.route('/signup', methods=['GET', 'POST'])
 def signup():
     if request.method == 'POST':
@@ -23,9 +22,8 @@ def signup():
         flash('Account signed up successfully!', 'success')
         return redirect(url_for('auth.login'))
 
-    # ✅ Correct template for user
+    # ✅ Must point to public template
     return render_template('public/user_signup.html')
-
 # --- USER LOGIN ---
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
