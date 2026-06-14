@@ -8,11 +8,15 @@
     <p>Sign up with your Gmail address to access SportsCar user pages.</p>
 
     <form class="register-form" method="POST" action="{{ url_for('auth.register') }}">
-      <label for="email">Gmail Address</label>
-      <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+      <div class="form-group">
+        <label for="email">Gmail Address</label>
+        <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+      </div>
 
-      <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" placeholder="Enter your password" required>
+      </div>
 
       <button type="submit" class="btn-register">Sign Up</button>
     </form>
