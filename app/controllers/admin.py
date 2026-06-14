@@ -35,16 +35,15 @@ def admin_login():
 
         admin = Admin.query.filter_by(email=email, password=password).first()
         if admin:
-            session['admin_id'] = admin.id   # 👉 save admin session
+            session['admin_id'] = admin.id
             flash('Admin login successful!', 'success')
             return redirect(url_for('admin.dashboard'))
         else:
             flash('No admin account found, please sign up first.', 'warning')
             return redirect(url_for('admin.admin_signup'))
 
-    # GET request → show login page
+    # GET request → unified login page
     return render_template('public/login.html')
-
 # --- ADMIN DASHBOARD ---
 @admin_bp.route('/dashboard')
 def dashboard():
