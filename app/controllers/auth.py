@@ -23,6 +23,9 @@ def user_signup():
         flash('Account signed up successfully!', 'success')
         return redirect(url_for('auth.user_login'))
 
+    # 👉 Debug line para makita sa terminal
+    print("Rendering USER SIGNUP template")
+
     return render_template('public/user_signup.html')
 
 # --- USER LOGIN ---
