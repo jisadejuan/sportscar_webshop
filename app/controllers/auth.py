@@ -5,7 +5,7 @@ from app.models.user import User
 auth_bp = Blueprint('auth', __name__)
 
 # --- USER SIGN UP ---
-@auth_bp.route('/signup', methods=['GET', 'POST'])
+@auth_bp.route('/user_signup', methods=['GET', 'POST'])
 def user_signup():
     if request.method == 'POST':
         email = request.form['email']
@@ -23,13 +23,10 @@ def user_signup():
         flash('Account signed up successfully!', 'success')
         return redirect(url_for('auth.user_login'))
 
-    # 👉 Debug line para makita sa terminal
-    print("Rendering USER SIGNUP template")
-
     return render_template('public/user_signup.html')
 
 # --- USER LOGIN ---
-@auth_bp.route('/login', methods=['GET', 'POST'])
+@auth_bp.route('/user_login', methods=['GET', 'POST'])
 def user_login():
     if request.method == 'POST':
         email = request.form['email']
