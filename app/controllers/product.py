@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
 from app.models.product import Product
 
 product_bp = Blueprint('product', __name__)
@@ -43,3 +43,20 @@ def product_detail(product_id):
             categories.setdefault(car.category, []).append(car)
         return render_template('products/list.html', categories=categories)
     return render_template('products/detail.html', product=product)
+
+# --- SEARCH ---
+@product_bp.route('/products/search')
+def search():
+    query = request.args.get('q', '')  # kunin ang input mula sa search bar
+    if not query:
+        # kung walang laman, ipakita lahat ng products
+        products = Product.query.all()
+    else:
+        # hanapin yung mga products na kapareho o malapit ang pangalan
+        products = Product.query.filter(Product.name.ilike(f"%{query}%")).all()
+
+    categories = {}
+    for car in products:
+        categories.setdefault(car.category, []).append(car)
+
+    return render_template('products/list.html', categories=categories, search=query)
