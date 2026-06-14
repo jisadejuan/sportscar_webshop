@@ -59,4 +59,5 @@ def search():
     for car in products:
         categories.setdefault(car.category, []).append(car)
 
+    # ipasa rin ang query sa template para makita kung ano ang hinanap
     return render_template('products/list.html', categories=categories, search=query)
