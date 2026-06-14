@@ -47,7 +47,8 @@ def admin_login():
 @admin_bp.route('/dashboard')
 def dashboard():
     products = Product.query.all()
-    return render_template('admin/dashboard.html', products=products)
+    # 👉 gagamitin ang admin.html bilang dashboard
+    return render_template('admin/admin.html', products=products)
 
 # --- CREATE PRODUCT ---
 @admin_bp.route('/create_product', methods=['GET', 'POST'])
