@@ -21,15 +21,16 @@ def create_app():
     migrate.init_app(app, db)
 
     # Import models so Flask-Migrate can detect them
-    from app.models import product, user, admin   # <-- fixed here
+    from app.models import product, user, admin
 
     # Register controllers (blueprints)
     from app.controllers.product import product_bp
     from app.controllers.admin import admin_bp
     from app.controllers.auth import auth_bp
 
+    # 👉 Important: add prefixes para hiwalay ang routes
     app.register_blueprint(product_bp)
-    app.register_blueprint(admin_bp)
-    app.register_blueprint(auth_bp)
+    app.register_blueprint(admin_bp, url_prefix='/admin')
+    app.register_blueprint(auth_bp, url_prefix='/auth')
 
     return app
