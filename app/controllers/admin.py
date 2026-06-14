@@ -78,16 +78,21 @@ def edit_product(product_id):
         return redirect(url_for('admin.dashboard'))
     return render_template('admin/edit.html', product=product)
 
-# --- DELETE PRODUCT ---
-@admin_bp.route('/delete_product/<int:product_id>', methods=['POST'])
+# --- DELETE PRODUCT (with confirmation) ---
+@admin_bp.route('/delete_product/<int:product_id>', methods=['GET', 'POST'])
 def delete_product(product_id):
     if 'admin_id' not in session:
         return redirect(url_for('admin.admin_login'))
 
     product = Product.query.get_or_404(product_id)
-    db.session.delete(product)
-    db.session.commit()
-    return redirect(url_for('admin.dashboard'))
+
+    if request.method == 'POST':
+        db.session.delete(product)
+        db.session.commit()
+        return redirect(url_for('admin.dashboard'))
+
+    # GET request → show confirm delete page
+    return render_template('admin/confirm_delete.html', product=product)
 
 # --- ADMIN LOGOUT ---
 @admin_bp.route('/logout')
