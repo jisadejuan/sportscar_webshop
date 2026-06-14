@@ -79,7 +79,7 @@ header {
 .login-container {
   display: flex;
   align-items: center;
-  margin-top: 15px;   /* ibaba ng kaunti */
+  margin-top: 50px;   /* ibaba ng kaunti */
 }
 
 .icon {
