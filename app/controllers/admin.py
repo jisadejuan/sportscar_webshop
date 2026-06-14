@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app import db
 from app.models.admin import Admin
+from app.models.product import Product
 
 admin_bp = Blueprint('admin', __name__)
 
@@ -35,9 +36,49 @@ def admin_login():
         admin = Admin.query.filter_by(email=email, password=password).first()
         if admin:
             flash('Admin login successful!', 'success')
-            return redirect(url_for('admin.dashboard'))  # or admin dashboard
+            return redirect(url_for('admin.dashboard'))
         else:
             flash('No admin account found, please sign up first.', 'warning')
             return redirect(url_for('admin.admin_signup'))
 
     return render_template('admin/admin_login.html')
+
+# --- ADMIN DASHBOARD ---
+@admin_bp.route('/dashboard')
+def dashboard():
+    products = Product.query.all()
+    return render_template('admin/dashboard.html', products=products)
+
+# --- CREATE PRODUCT ---
+@admin_bp.route('/create_product', methods=['GET', 'POST'])
+def create_product():
+    if request.method == 'POST':
+        name = request.form['name']
+        price = request.form['price']
+        new_product = Product(name=name, price=price)
+        db.session.add(new_product)
+        db.session.commit()
+        flash('Product created successfully!', 'success')
+        return redirect(url_for('admin.dashboard'))
+    return render_template('admin/create_product.html')
+
+# --- EDIT PRODUCT ---
+@admin_bp.route('/edit_product/<int:product_id>', methods=['GET', 'POST'])
+def edit_product(product_id):
+    product = Product.query.get_or_404(product_id)
+    if request.method == 'POST':
+        product.name = request.form['name']
+        product.price = request.form['price']
+        db.session.commit()
+        flash('Product updated successfully!', 'success')
+        return redirect(url_for('admin.dashboard'))
+    return render_template('admin/edit_product.html', product=product)
+
+# --- DELETE PRODUCT ---
+@admin_bp.route('/delete_product/<int:product_id>', methods=['POST'])
+def delete_product(product_id):
+    product = Product.query.get_or_404(product_id)
+    db.session.delete(product)
+    db.session.commit()
+    flash('Product deleted successfully!', 'success')
+    return redirect(url_for('admin.dashboard'))
