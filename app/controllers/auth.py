@@ -2,7 +2,6 @@ from flask import Blueprint, render_template, request, redirect, url_for, flash
 from app import db
 from app.models.user import User
 
-# Define the blueprint FIRST
 auth_bp = Blueprint('auth', __name__)
 
 # --- USER SIGN UP ---
@@ -26,6 +25,7 @@ def signup():
 
     # ✅ Correct template for user
     return render_template('public/user_signup.html')
+
 # --- USER LOGIN ---
 @auth_bp.route('/login', methods=['GET', 'POST'])
 def login():
@@ -36,7 +36,7 @@ def login():
         user = User.query.filter_by(email=email, password=password).first()
         if user:
             flash('Login successful!', 'success')
-            return redirect(url_for('product.home'))  # or redirect to user dashboard
+            return redirect(url_for('product.home'))  # or user dashboard
         else:
             flash('No account found, please sign up first.', 'warning')
             return redirect(url_for('auth.signup'))
