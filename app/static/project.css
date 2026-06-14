@@ -949,11 +949,19 @@ html {
 }
 .admin-row:hover { background: #2a2a2a; }
 
+/* Action buttons layout */
+.admin-td.actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px; /* space sa pagitan ng buttons */
+}
+
 .admin-btn-edit, .admin-btn-delete {
+  flex: 0 0 auto;
   padding: 6px 12px;
   border-radius: 4px;
   text-decoration: none;
-  margin: 0 5px;
   transition: background 0.3s ease;
 }
 .admin-btn-edit {
@@ -967,6 +975,7 @@ html {
 }
 .admin-btn-delete:hover { background: #c0392b; }
 
+/* Responsive fix */
 @media (max-width: 768px) {
   .admin-table, .admin-table thead, .admin-table tbody, .admin-th, .admin-td, .admin-row {
     display: block;
@@ -979,6 +988,10 @@ html {
   .admin-td {
     text-align: left;
     padding: 10px;
+  }
+  .admin-td.actions {
+    flex-direction: column; /* stack vertically sa maliit na screen */
+    gap: 8px;
   }
 }
 
