@@ -1,34 +1,26 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<section id="user-login-section" class="user-login-container">
-  <h1 class="user-login-title">User Login</h1>
+<section class="login-page">
+  <div class="login-box">
+    <h1>Admin Login</h1>
+    <p>Access the SportsCar admin dashboard.</p>
 
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      <div class="user-login-messages">
-        {% for category, message in messages %}
-          <p class="user-login-message user-login-{{ category }}"><strong>{{ message }}</strong></p>
-        {% endfor %}
-      </div>
-    {% endif %}
-  {% endwith %}
+    <form class="login-form" method="POST" action="{{ url_for('auth.admin_login') }}">
+      <label for="username">Admin Username</label>
+      <input type="text" id="username" name="username" placeholder="Enter admin username" required>
 
-  <form id="user-login-form" class="user-login-form" method="POST" action="{{ url_for('auth.user_login') }}">
-    <div class="user-login-group">
-      <label for="login-email">Email</label>
-      <input type="email" id="login-email" name="email" required>
+      <label for="password">Password</label>
+      <input type="password" id="password" name="password" placeholder="Enter your password" required>
+
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+
+    <div class="login-footer">
+      <p><a href="{{ url_for('product.home') }}">Back to Home</a></p>
+      <p><a href="{{ url_for('auth.user_login') }}">User Login</a></p>
     </div>
-
-    <div class="user-login-group">
-      <label for="login-password">Password</label>
-      <input type="password" id="login-password" name="password" required>
-    </div>
-
-    <div class="user-login-actions">
-      <button type="submit" class="user-btn-login">Login</button>
-    </div>
-  </form>
+  </div>
 </section>
 
 {% endblock %}
