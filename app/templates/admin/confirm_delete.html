@@ -12,16 +12,19 @@
     <p class="delete-warning">This action cannot be undone.</p>
 
     <div class="delete-product-preview">
-      <img src="{{ url_for('static', filename='images/' ~ product.image) }}" alt="{{ product.name }}">
+      {% if product.image %}
+        <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+      {% else %}
+        <p>No image available</p>
+      {% endif %}
     </div>
   </div>
 
-  <!-- FIXED: use admin.delete_product -->
   <form id="delete-product-form" class="delete-product-form" method="POST" action="{{ url_for('admin.delete_product', product_id=product.id) }}">
     <div class="delete-product-actions">
       <button type="submit" class="delete-btn-confirm">Yes, Delete</button>
-      <!-- FIXED: use admin.admin_dashboard -->
-      <a href="{{ url_for('admin.admin_dashboard') }}" class="delete-btn-cancel">Cancel</a>
+      <!-- ✅ Correct route -->
+      <a href="{{ url_for('admin.dashboard') }}" class="delete-btn-cancel">Cancel</a>
     </div>
   </form>
 </section>
