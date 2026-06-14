@@ -1342,3 +1342,64 @@ html {
   text-decoration: underline;
 }
 
+/* ================================
+   SIGN UP/LOG IN PAGE
+   ================================ */
+
+.signup-box {
+  background: #222;
+  border: 1px solid #333;
+  border-radius: 10px;
+  padding: 30px;
+  width: 400px;
+  margin: 40px auto;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.5);
+}
+
+.signup-box label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+  color: #ddd;
+}
+
+.signup-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background: #111;
+  color: #eee;
+}
+
+.btn-signup {
+  width: 100%;
+  padding: 12px;
+  background: #e50914;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.btn-signup:hover {
+  background: #b20710;
+}
+
+.signup-footer {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.signup-footer a {
+  color: #e50914;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.signup-footer a:hover {
+  text-decoration: underline;
+}
