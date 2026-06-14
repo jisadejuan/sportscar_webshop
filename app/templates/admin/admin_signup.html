@@ -1,10 +1,25 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1>Admin Sign Up</h1>
-<form method="POST" action="{{ url_for('admin.admin_signup') }}">
-  <input type="email" name="email" placeholder="admin@gmail.com" required>
-  <input type="password" name="password" placeholder="Enter your password" required>
-  <button type="submit">Sign Up</button>
-</form>
-<p>Already have an account? <a href="{{ url_for('admin.admin_login') }}">Log In</a></p>
+
+<section id="admin-signup-section" class="admin-signup-container">
+  <h1 class="admin-signup-title">Admin Sign Up</h1>
+
+  <form method="POST" action="{{ url_for('admin.admin_signup') }}" class="admin-signup-form">
+    <div class="admin-signup-group">
+      <label for="signup-email">Email</label>
+      <input type="email" id="signup-email" name="email" placeholder="admin@gmail.com" required>
+    </div>
+
+    <div class="admin-signup-group">
+      <label for="signup-password">Password</label>
+      <input type="password" id="signup-password" name="password" placeholder="Enter your password" required>
+    </div>
+
+    <div class="admin-signup-actions">
+      <button type="submit" class="admin-btn-save">Sign Up</button>
+      <a href="{{ url_for('admin.admin_login') }}" class="admin-btn-cancel">Log In</a>
+    </div>
+  </form>
+</section>
+
 {% endblock %}
