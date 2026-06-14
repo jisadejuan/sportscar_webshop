@@ -62,7 +62,7 @@ def create_product():
         db.session.add(new_product)
         db.session.commit()
         return redirect(url_for('admin.dashboard'))
-    return render_template('admin/create_product.html')
+    return render_template('admin/create.html')
 
 # --- EDIT PRODUCT ---
 @admin_bp.route('/edit_product/<int:product_id>', methods=['GET', 'POST'])
