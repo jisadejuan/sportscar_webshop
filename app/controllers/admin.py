@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, flash
+from flask import Blueprint, render_template, request, redirect, url_for, flash, session
 from app import db
 from app.models.admin import Admin
 from app.models.product import Product
@@ -35,6 +35,7 @@ def admin_login():
 
         admin = Admin.query.filter_by(email=email, password=password).first()
         if admin:
+            session['admin_id'] = admin.id   # 👉 save admin session
             flash('Admin login successful!', 'success')
             return redirect(url_for('admin.dashboard'))
         else:
@@ -46,13 +47,20 @@ def admin_login():
 # --- ADMIN DASHBOARD ---
 @admin_bp.route('/dashboard')
 def dashboard():
+    if 'admin_id' not in session:   # 👉 check kung naka-login
+        flash('Please log in first.', 'danger')
+        return redirect(url_for('admin.admin_login'))
+
     products = Product.query.all()
-    # 👉 gagamitin ang admin.html bilang dashboard
     return render_template('admin/admin.html', products=products)
 
 # --- CREATE PRODUCT ---
 @admin_bp.route('/create_product', methods=['GET', 'POST'])
 def create_product():
+    if 'admin_id' not in session:
+        flash('Please log in first.', 'danger')
+        return redirect(url_for('admin.admin_login'))
+
     if request.method == 'POST':
         name = request.form['name']
         price = request.form['price']
@@ -66,6 +74,10 @@ def create_product():
 # --- EDIT PRODUCT ---
 @admin_bp.route('/edit_product/<int:product_id>', methods=['GET', 'POST'])
 def edit_product(product_id):
+    if 'admin_id' not in session:
+        flash('Please log in first.', 'danger')
+        return redirect(url_for('admin.admin_login'))
+
     product = Product.query.get_or_404(product_id)
     if request.method == 'POST':
         product.name = request.form['name']
@@ -78,8 +90,19 @@ def edit_product(product_id):
 # --- DELETE PRODUCT ---
 @admin_bp.route('/delete_product/<int:product_id>', methods=['POST'])
 def delete_product(product_id):
+    if 'admin_id' not in session:
+        flash('Please log in first.', 'danger')
+        return redirect(url_for('admin.admin_login'))
+
     product = Product.query.get_or_404(product_id)
     db.session.delete(product)
     db.session.commit()
     flash('Product deleted successfully!', 'success')
     return redirect(url_for('admin.dashboard'))
+
+# --- ADMIN LOGOUT ---
+@admin_bp.route('/logout')
+def logout():
+    session.pop('admin_id', None)   # 👉 clear session
+    flash('Logged out successfully.', 'success')
+    return redirect(url_for('admin.admin_login'))
