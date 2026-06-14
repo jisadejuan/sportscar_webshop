@@ -4,7 +4,7 @@
 header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  /* alisin ang align-items: center */
   background: linear-gradient(180deg, #000000 0%, #444444 120%, #f4f4f4 100%);
   padding: 15px 30px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.6);
@@ -79,6 +79,7 @@ header {
 .login-container {
   display: flex;
   align-items: center;
+  margin-top: 15px;   /* ibaba ng kaunti */
 }
 
 .icon {
