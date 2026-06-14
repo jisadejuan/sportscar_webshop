@@ -29,7 +29,7 @@
         <td class="admin-td">{{ product.stock }}</td>
         <td class="admin-td">
           {% if product.image %}
-            <img src="{{ product.image }}" alt="{{ product.name }}" style="max-width:100px;">
+            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}" style="max-width:100px;">
           {% else %}
             No image
           {% endif %}
@@ -39,10 +39,8 @@
           <!-- Edit button -->
           <a href="{{ url_for('admin.edit_product', product_id=product.id) }}" class="admin-btn-edit">Edit</a>
 
-          <!-- Delete button (POST form) -->
-          <form method="POST" action="{{ url_for('admin.delete_product', product_id=product.id) }}" style="display:inline;">
-            <button type="submit" class="admin-btn-delete">Delete</button>
-          </form>
+          <!-- Delete button → GET request muna -->
+          <a href="{{ url_for('admin.delete_product', product_id=product.id) }}" class="admin-btn-delete">Delete</a>
         </td>
       </tr>
       {% endfor %}
