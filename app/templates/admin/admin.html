@@ -4,16 +4,6 @@
 <section id="admin-dashboard-section" class="admin-dashboard-container">
   <h1 class="admin-dashboard-title">Admin Dashboard</h1>
 
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      <div id="admin-flash-messages" class="admin-messages">
-        {% for category, message in messages %}
-          <p class="admin-message admin-message-{{ category }}"><strong>{{ message }}</strong></p>
-        {% endfor %}
-      </div>
-    {% endif %}
-  {% endwith %}
-
   <div id="admin-actions-bar" class="admin-actions-container">
     <a href="{{ url_for('admin.create_product') }}" class="admin-btn-add">+ Add New Product</a>
   </div>
@@ -36,8 +26,8 @@
         <td class="admin-td">{{ product.price }}</td>
         <td class="admin-td">{{ product.stock }}</td>
         <td class="admin-td">
-        <a href="{{ url_for('admin.edit_product', product_id=product.id) }}" class="admin-btn-edit">Edit</a>
-        <a href="{{ url_for('admin.delete_product', product_id=product.id) }}" class="admin-btn-delete">Delete</a>
+          <a href="{{ url_for('admin.edit_product', product_id=product.id) }}" class="admin-btn-edit">Edit</a>
+          <a href="{{ url_for('admin.delete_product', product_id=product.id) }}" class="admin-btn-delete">Delete</a>
         </td>
       </tr>
       {% endfor %}
