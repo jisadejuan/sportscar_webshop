@@ -43,7 +43,7 @@ def admin_login():
             return redirect(url_for('admin.admin_signup'))
 
     # GET request → show login page
-    return render_template('admin/admin_login.html')
+    return render_template('public/login.html')
 
 # --- ADMIN DASHBOARD ---
 @admin_bp.route('/dashboard')
@@ -106,4 +106,4 @@ def delete_product(product_id):
 def logout():
     session.pop('admin_id', None)   # 👉 clear session
     flash('Logged out successfully.', 'success')
-    return redirect(url_for('admin.admin_login'))
+    return redirect(url_for('admin.login'))
