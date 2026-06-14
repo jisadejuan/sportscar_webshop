@@ -42,4 +42,4 @@ def user_login():
             return redirect(url_for('auth.user_signup'))
 
     # GET request → unified login page
-    return render_template('login.html')
+    return render_template('public/login.html')
