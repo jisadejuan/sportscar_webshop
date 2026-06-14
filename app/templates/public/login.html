@@ -9,7 +9,8 @@
 
     <form class="login-form" method="POST" action="{{ url_for('auth.user_login') }}">
       <label for="email">Gmail Address</label>
-      <input type="email" id="email" name="username" placeholder="example@gmail.com" required>
+      <!-- FIXED: name="email" so backend receives request.form['email'] -->
+      <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
 
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="Enter your password" required>
