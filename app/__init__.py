@@ -21,7 +21,7 @@ def create_app():
     migrate.init_app(app, db)
 
     # Import models so Flask-Migrate can detect them
-    from app.models import product, user, admin_user
+    from app.models import product, user, admin   # <-- fixed here
 
     # Register controllers (blueprints)
     from app.controllers.product import product_bp
