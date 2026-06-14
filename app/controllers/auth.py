@@ -34,3 +34,29 @@ def admin_login():
         else:
             flash('Invalid admin credentials', 'danger')
     return render_template('auth/admin_login.html')
+
+@auth_bp.route('/register', methods=['GET', 'POST'])
+def register():
+    if request.method == 'POST':
+        email = request.form['email']
+        password = request.form['password']
+
+        # Check if user already exists
+        existing_user = User.query.filter_by(email=email).first()
+        if existing_user:
+            flash('Email already registered. Please log in.', 'danger')
+            return redirect(url_for('auth.user_login'))
+
+        # Create new user
+        new_user = User(email=email, password=password)
+        db.session.add(new_user)
+        db.session.commit()
+
+        # Automatically log in the new user
+        session['user_id'] = new_user.id
+        flash('Account created successfully! Welcome!', 'success')
+
+        # Redirect straight to home (user-only page)
+        return redirect(url_for('product.product_list'))
+
+    return render_template('public/register.html')
