@@ -1397,3 +1397,78 @@ html {
   color: #fff;
   text-decoration: underline;
 }
+
+/* ================================
+   USER SIGNUP PAGE
+   ================================ */
+
+/* User Sign Up */
+.user-signup-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 30px;
+  background: #1c1c1c; /* dark gray/black */
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: #fff;
+}
+
+.user-signup-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #e60000; /* red accent */
+}
+
+.user-signup-group {
+  margin-bottom: 15px;
+}
+
+.user-signup-group label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: #ccc; /* light gray */
+}
+
+.user-signup-group input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #666;
+  border-radius: 4px;
+  background: #2a2a2a;
+  color: #fff;
+}
+
+.user-signup-group input:focus {
+  border-color: #e60000;
+  outline: none;
+}
+
+.user-signup-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.user-btn-save {
+  background: #e60000; /* red button */
+  color: #fff;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.user-btn-save:hover {
+  background: #b30000; /* darker red */
+}
+
+.user-btn-cancel {
+  color: #ccc;
+  text-decoration: none;
+}
+
+.user-btn-cancel:hover {
+  color: #fff;
+  text-decoration: underline;
+}
