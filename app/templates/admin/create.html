@@ -14,7 +14,6 @@
     {% endif %}
   {% endwith %}
 
-  <!-- FIXED: use admin.create_product -->
   <form id="admin-create-form" class="admin-create-form" method="POST" action="{{ url_for('admin.create_product') }}">
     <div class="admin-create-group">
       <label for="create-name">Name</label>
@@ -48,7 +47,6 @@
 
     <div class="admin-create-actions">
       <button type="submit" class="admin-btn-save">Save Product</button>
-      <!-- FIXED: use admin.admin_dashboard -->
       <a href="{{ url_for('admin.dashboard') }}" class="admin-btn-cancel">Cancel</a>
     </div>
   </form>
