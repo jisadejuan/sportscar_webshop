@@ -1,20 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="page-title">User Sign Up</h1>
-
-<div class="signup-box">
-  <form method="POST" action="{{ url_for('auth.user_signup') }}">
-    <label for="email">Gmail Address</label>
-    <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
-
-    <label for="password">Password</label>
-    <input type="password" id="password" name="password" placeholder="Enter your password" required>
-
-    <button type="submit" class="btn-signup">Sign Up</button>
-  </form>
-
-  <div class="signup-footer">
-    <p>Already have an account? <a href="{{ url_for('auth.user_login') }}">Log In</a></p>
-  </div>
-</div>
+<h1>User Sign Up</h1>
+<form method="POST" action="{{ url_for('auth.user_signup') }}">
+  <input type="email" name="email" placeholder="example@gmail.com" required>
+  <input type="password" name="password" placeholder="Enter your password" required>
+  <button type="submit">Sign Up</button>
+</form>
+<p>Already have an account? <a href="{{ url_for('auth.user_login') }}">Log In</a></p>
 {% endblock %}
