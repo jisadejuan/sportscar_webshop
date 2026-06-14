@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href='{{ url_for("static", filename="project.css") }}'>
+</head>
+<body>
+    {% include 'includes/admin_header.html' %}
+    <main>
+        {% block content %}
+        {% endblock %}
+    </main>
+    {% include 'includes/admin_footer.html' %}
+</body>
+</html>
