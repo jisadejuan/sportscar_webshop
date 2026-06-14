@@ -34,9 +34,12 @@ def product_list():
 
 @product_bp.route('/products/<int:product_id>')
 def product_detail(product_id):
-    product = Product.query.get_or_404(product_id)
-    return render_template('products/detail.html', product=product)    if product is None:
-        return redirect(url_for('product.admin_dashboard'))
+    product = Product.query.get(product_id)
+
+    if product is None:
+        return redirect(url_for('product.product_list'))
+
+    return render_template('products/detail.html', product=product)
 
     if request.method == 'POST':
         from app import db
