@@ -35,7 +35,7 @@ def user_login():
         user = User.query.filter_by(email=email, password=password).first()
         if user:
             flash('Login successful!', 'success')
-            return redirect(url_for('product.home'))
+            return redirect(url_for('product.home'))  # or user dashboard
         else:
             flash('No account found, please sign up first.', 'warning')
             return redirect(url_for('auth.user_signup'))
