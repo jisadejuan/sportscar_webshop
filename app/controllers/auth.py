@@ -40,4 +40,4 @@ def user_login():
             flash('No account found, please sign up first.', 'warning')
             return redirect(url_for('auth.user_signup'))
 
-    return render_template('public/user_login.html')
+    return render_template('public/login.html')
