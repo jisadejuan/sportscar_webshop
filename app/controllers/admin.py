@@ -85,7 +85,7 @@ def edit_product(product_id):
         db.session.commit()
         flash('Product updated successfully!', 'success')
         return redirect(url_for('admin.dashboard'))
-    return render_template('admin/edit_product.html', product=product)
+    return render_template('admin/edit.html', product=product)
 
 # --- DELETE PRODUCT ---
 @admin_bp.route('/delete_product/<int:product_id>', methods=['POST'])
