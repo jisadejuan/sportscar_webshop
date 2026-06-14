@@ -16,10 +16,12 @@
     </div>
   </div>
 
-  <form id="delete-product-form" class="delete-product-form" method="POST" action="{{ url_for('product.delete_product', product_id=product.id) }}">
+  <!-- FIXED: use admin.delete_product -->
+  <form id="delete-product-form" class="delete-product-form" method="POST" action="{{ url_for('admin.delete_product', product_id=product.id) }}">
     <div class="delete-product-actions">
       <button type="submit" class="delete-btn-confirm">Yes, Delete</button>
-      <a href="{{ url_for('product.product_list') }}" class="delete-btn-cancel">Cancel</a>
+      <!-- FIXED: use admin.admin_dashboard -->
+      <a href="{{ url_for('admin.admin_dashboard') }}" class="delete-btn-cancel">Cancel</a>
     </div>
   </form>
 </section>
