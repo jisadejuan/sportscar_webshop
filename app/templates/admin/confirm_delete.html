@@ -1,20 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<body>
-  <h1>Delete Product</h1>
+<section id="delete-product-section" class="delete-product-container">
+  <h1 class="delete-product-title">Delete Product</h1>
 
-  <p>Are you sure you want to delete <strong>{{ product.name }}</strong>?</p>
-  <p>Category: {{ product.category }}</p>
-  <p>Price: {{ product.price }}</p>
-  <p>Stock: {{ product.stock }}</p>
-  <p>This action cannot be undone.</p>
+  <div class="delete-product-details">
+    <p>Are you sure you want to delete <strong>{{ product.name }}</strong>?</p>
+    <p>Category: {{ product.category }}</p>
+    <p>Price: {{ product.price }}</p>
+    <p>Stock: {{ product.stock }}</p>
+    <p class="delete-warning">This action cannot be undone.</p>
+  </div>
 
-  <form method="POST" action="{{ url_for('product.delete_product', product_id=product.id) }}">
-    <button type="submit">Yes, Delete</button>
+  <form id="delete-product-form" class="delete-product-form" method="POST" action="{{ url_for('product.delete_product', product_id=product.id) }}">
+    <div class="delete-product-actions">
+      <button type="submit" class="delete-btn-confirm">Yes, Delete</button>
+      <a href="{{ url_for('product.product_list') }}" class="delete-btn-cancel">Cancel</a>
+    </div>
   </form>
-
-  <a href="{{ url_for('product.product_list') }}">Cancel</a>
-</body>
+</section>
 
 {% endblock %}
