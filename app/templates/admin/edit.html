@@ -47,12 +47,13 @@
 
     <!-- ✅ Correct preview: use product.image -->
     <div class="edit-product-preview">
-      {% if product.image %}
-        <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}" style="max-width:200px;">
-      {% else %}
-        <p>No image available</p>
-      {% endif %}
-    </div>
+  {% if product.image %}
+    <img src="{{ url_for('static', filename=product.image) }}" 
+         alt="{{ product.name }}" style="max-width:200px;">
+  {% else %}
+    <p>No image available</p>
+  {% endif %}
+</div>
 
     <div class="edit-product-actions">
       <button type="submit" class="edit-btn-save">Save Changes</button>
