@@ -2,7 +2,6 @@
 {% block content %}
 <h1>{{ item.name }}</h1>
 
-<!-- FIXED IMAGE PATH -->
 <img src="{{ url_for('static', filename='images/' ~ item.image) }}" alt="{{ item.name }}">
 
 <p><strong>Category:</strong> {{ item.category }}</p>
