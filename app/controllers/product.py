@@ -36,7 +36,6 @@ def product_list():
 def product_detail(product_id):
     item = Product.query.get(product_id)
     if item is None:
-        # Kung wala ang product, ipakita na lang ulit ang list
         items = Product.query.all()
         categories = {}
         for car in items:
@@ -47,12 +46,10 @@ def product_detail(product_id):
 # --- SEARCH ---
 @product_bp.route('/products/search')
 def search():
-    query = request.args.get('q', '')  # kunin ang input mula sa search bar
+    query = request.args.get('q', '')
     if not query:
-        # kung walang laman, ipakita lahat ng products
         items = Product.query.all()
     else:
-        # hanapin yung mga products na kapareho o malapit ang pangalan
         items = Product.query.filter(Product.name.ilike(f"%{query}%")).all()
 
     categories = {}
