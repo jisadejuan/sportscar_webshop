@@ -1,4 +1,4 @@
-{% extends 'admin_base.html' %}
+{% extends 'base_admin.html.html' %}
 {% block content %}
 
 <section id="edit-product-section" class="edit-product-container">
@@ -48,7 +48,7 @@
     <!-- ✅ Correct preview: use product.image -->
     <div class="edit-product-preview">
   {% if product.image %}
-    <img src="{{ url_for('static', filename=product.image) }}"
+    <img src="{{ url_for('static', filename='images/' ~ product.image) }}"
          alt="{{ product.name }}" style="max-width:200px;">
   {% else %}
     <p>No image available</p>
