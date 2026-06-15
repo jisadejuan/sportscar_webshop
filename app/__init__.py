@@ -8,6 +8,11 @@ migrate = Migrate()
 def create_app():
     app = Flask(__name__)
 
+    # ✅ Required para gumana ang session at flash
+    app.config['SECRET_KEY'] = 'dev'  
+    # pwede mong palitan ng mas secure na string, halimbawa:
+    # app.config['SECRET_KEY'] = 'my_super_secret_key_123'
+
     # Database configuration
     app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/carshop_db'
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
