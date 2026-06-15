@@ -958,27 +958,25 @@ html {
    background: #2a2a2a; 
 }
 
-
-.admin-td.actions {
+   .admin-td.actions {
   display: flex;
   justify-content: center;
-  align-items: center;      /* ✅ buttons nasa gitna */
+  align-items: center;   /* ✅ pantay sa gitna ng row */
   gap: 10px;
-  border-bottom: 1px solid #333;  /* ✅ same guhit as other cells */
-  height: 100%;             /* ✅ sakto sa row height */
-}
+  border-bottom: 1px solid #333;  /* ✅ same guhit as ibang cells */
+   }
 
 .admin-btn-edit, .admin-btn-delete {
-  flex: 0 0 auto;
   padding: 6px 12px;
-  min-height: 32px;         /* ✅ consistent button height */
-  display: inline-flex;
+  min-height: 32px;      /* ✅ consistent height */
+  display: inline-flex;  /* ✅ para pantay ang text sa loob */
   align-items: center;
   justify-content: center;
   border-radius: 4px;
   text-decoration: none;
   transition: background 0.3s ease;
 }
+
 .admin-btn-edit {
   background: #3498db;
   color: #fff;
@@ -1015,11 +1013,6 @@ html {
   .admin-td {
     text-align: left;
     padding: 10px;
-  }
-   
-  .admin-td.actions {
-    flex-direction: column;
-    gap: 8px;
   }
 }
 
