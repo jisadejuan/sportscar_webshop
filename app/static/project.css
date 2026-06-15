@@ -945,6 +945,7 @@ html {
   padding: 15px;
   text-align: center;
   border-bottom: 1px solid #333;
+  vertical-align: middle;   /* ✅ pantay lahat ng cells */
 }
 
 .admin-th {
@@ -960,13 +961,18 @@ html {
 .admin-td.actions {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;   /* ✅ buttons nasa gitna */
   gap: 10px;
+  border-bottom: 1px solid #333;  /* ✅ same guhit as other cells */
 }
 
 .admin-btn-edit, .admin-btn-delete {
   flex: 0 0 auto;
   padding: 6px 12px;
+  min-height: 32px;   /* ✅ consistent height */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 4px;
   text-decoration: none;
   transition: background 0.3s ease;
@@ -991,11 +997,11 @@ html {
 }
 
 @media (max-width: 768px) {
-.admin-table, 
-.admin-table thead, 
-.admin-table tbody, 
-.admin-th, .admin-td,
-.admin-row {
+  .admin-table, 
+  .admin-table thead, 
+  .admin-table tbody, 
+  .admin-th, .admin-td,
+  .admin-row {
     display: block;
     width: 100%;
   }
