@@ -3,12 +3,6 @@
 
 <section id="admin-dashboard-section" class="admin-dashboard-container">
   <h1 class="admin-dashboard-title">Admin Dashboard</h1>
-  <nav>
-  <ul>
-    <li><a href="{{ url_for('admin.admin_dashboard_products') }}">View Products (User View)</a></li>
-    <li><a href="{{ url_for('admin.admin_dashboard') }}">Admin Home</a></li>
-  </ul>
-  </nav>
 
   <div id="admin-actions-bar" class="admin-actions-container">
     <a href="{{ url_for('admin.create_product') }}" class="admin-btn-add">+ Add New Product</a>
