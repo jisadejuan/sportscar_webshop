@@ -23,7 +23,6 @@
   <form id="delete-product-form" class="delete-product-form" method="POST" action="{{ url_for('admin.delete_product', product_id=product.id) }}">
     <div class="delete-product-actions">
       <button type="submit" class="delete-btn-confirm">Yes, Delete</button>
-      <!-- ✅ Correct route -->
       <a href="{{ url_for('admin.dashboard') }}" class="delete-btn-cancel">Cancel</a>
     </div>
   </form>
