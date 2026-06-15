@@ -36,9 +36,7 @@
         </td>
         <td class="admin-td">{{ product.description }}</td>
         <td class="admin-td actions">
-          <!-- Edit button -->
           <a href="{{ url_for('admin.edit_product', product_id=product.id) }}" class="admin-btn-edit">Edit</a>
-          <!-- Delete button -->
           <a href="{{ url_for('admin.delete_product', product_id=product.id) }}" class="admin-btn-delete">Delete</a>
         </td>
       </tr>
