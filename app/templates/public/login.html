@@ -6,7 +6,7 @@
   <!-- User Login Box -->
   <div class="login-box">
     <h2>Log in as User</h2>
-    <form method="POST" action="{{ url_for('auth.user_login') }}">
+<form method="POST" action="{{ url_for('admin.admin_login') }}">
       <label for="user-email">Gmail Address</label>
       <input type="email" id="user-email" name="email" placeholder="example@gmail.com" required>
 
@@ -17,7 +17,7 @@
     </form>
 
     <div class="login-footer">
-      <p>Don't have an account? <a href="{{ url_for('auth.user_signup') }}">Sign Up</a></p>
+      <p>Don't have an account? <a href="{{ admin.admin_signup }}">Sign Up</a></p>
     </div>
   </div>
 
