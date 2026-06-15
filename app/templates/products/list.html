@@ -4,7 +4,6 @@
 <section class="products-page">
   <div class="products-container">
 
-    <!-- Sidebar -->
     <aside class="products-sidebar">
       <h2>Categories</h2>
       <ul>
@@ -14,7 +13,6 @@
       </ul>
     </aside>
 
-    <!-- Product List -->
     <div class="products-list">
       {% for category, items in categories.items() %}
       <div id="{{ category|lower|replace(' ', '-') }}" class="products-section">
@@ -23,7 +21,6 @@
 
           {% for item in items %}
           <div class="product-card">
-            <!-- FIXED IMAGE PATH -->
             <img src="{{ url_for('static', filename='images/' ~ item.image) }}" alt="{{ item.name }}">
             <h3>{{ item.name }}</h3>
             <div class="product-info">
