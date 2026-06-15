@@ -117,21 +117,3 @@ def delete_product(product_id):
 def logout():
     session.pop('admin_id', None)
     return redirect(url_for('admin.admin_login'))
-
-# --- ADMIN VIEWING OF PRODUCTS (reuse user templates) ---
-@admin_bp.route('/dashboard/products')
-def admin_dashboard_products():
-    if 'admin_id' not in session:
-        return redirect(url_for('admin.admin_login'))
-    items = Product.query.all()
-    categories = {}
-    for car in items:
-        categories.setdefault(car.category, []).append(car)
-    return render_template('products/list.html', categories=categories)
-
-@admin_bp.route('/dashboard/products/<int:product_id>')
-def admin_dashboard_product_detail(product_id):
-    if 'admin_id' not in session:
-        return redirect(url_for('admin.admin_login'))
-    item = Product.query.get_or_404(product_id)
-    return render_template('products/detail.html', item=item)
