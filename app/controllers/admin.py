@@ -56,19 +56,29 @@ def create_product():
         return redirect(url_for('admin.admin_login'))
 
     if request.method == 'POST':
-    product.name = request.form['name']
-    product.category = request.form['category']
-    product.price = float(request.form['price'])
-    product.stock = int(request.form['stock'])
+        name = request.form.get('name')
+        category = request.form.get('category')
+        price = request.form.get('price')
+        stock = request.form.get('stock')
+        description = request.form.get('description')
+        image = request.form.get('image')
 
-    # retain old value kung blank
-    product.description = request.form['description'] or product.description
-    product.image = request.form['image'] or product.image
+        new_product = Product(
+            name=name,
+            category=category,
+            price=price,
+            stock=stock,
+            description=description,
+            image=image
+        )
 
-    db.session.commit()
-    return redirect(url_for('admin.dashboard'))
+        db.session.add(new_product)
+        db.session.commit()
+        return redirect(url_for('admin.dashboard'))
 
-# --- EDIT PRODUCT ---
+    return render_template('admin/create.html')
+
+
 # --- EDIT PRODUCT ---
 @admin_bp.route('/edit_product/<int:product_id>', methods=['GET', 'POST'])
 def edit_product(product_id):
