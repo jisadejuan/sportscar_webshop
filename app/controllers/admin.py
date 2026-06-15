@@ -78,25 +78,7 @@ def create_product():
     return render_template('admin/create.html')
 
 # --- EDIT PRODUCT ---
-@admin_bp.route('/edit_product/<int:product_id>', methods=['GET', 'POST'])
-def edit_product(product_id):
-    if 'admin_id' not in session:
-        return redirect(url_for('admin.admin_login'))
-
-    product = Product.query.get_or_404(product_id)
-
-    if request.method == 'POST':
-        product.name = request.form['name']
-        product.category = request.form['category']
-        product.price = float(request.form['price'])
-        product.stock = int(request.form['stock'])
-        product.description = request.form['description']
-        product.image = request.form['image']  # filename lang
-
-        db.session.commit()
-        return redirect(url_for('admin.dashboard'))
-
-    return render_template('admin/edit.html', product=product)
+admin_bp.route('/edit_product/<int:product_id>
 
 # --- DELETE PRODUCT (with confirmation) ---
 @admin_bp.route('/delete_product/<int:product_id>', methods=['GET', 'POST'])
