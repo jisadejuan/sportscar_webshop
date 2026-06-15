@@ -79,8 +79,8 @@ def edit_product(product_id):
     if request.method == 'POST':
         product.name = request.form.get('name', product.name)
         product.category = request.form.get('category', product.category)
-        product.price = float(request.form.get('price', product.price))
-        product.stock = int(request.form.get('stock', product.stock))
+        product.price = request.form.get('price', product.price)
+        product.stock = request.form.get('stock', product.stock)
         product.description = request.form.get('description', product.description)
         product.image = request.form.get('image', product.image)
 
@@ -88,6 +88,8 @@ def edit_product(product_id):
         return redirect(url_for('admin.dashboard'))
 
     return render_template('admin/edit.html', product=product)
+
+
 # --- DELETE PRODUCT (with confirmation) ---
 @admin_bp.route('/delete_product/<int:product_id>', methods=['GET', 'POST'])
 def delete_product(product_id):
