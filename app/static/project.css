@@ -906,15 +906,15 @@ html {
 }
 
 .admin-message-success { 
-   color: #4caf50;
+  color: #4caf50;
 }
 
 .admin-message-error { 
-   color: #ff3333; 
+  color: #ff3333; 
 }
 
 .admin-actions-container {
-   margin: 20px 0;
+  margin: 20px 0;
 }
 
 .admin-btn-add {
@@ -928,7 +928,7 @@ html {
 }
 
 .admin-btn-add:hover { 
-   background: #cc0000; 
+  background: #cc0000; 
 }
 
 .admin-table {
@@ -955,16 +955,21 @@ html {
 }
 
 .admin-row:hover { 
-   background: #2a2a2a; 
+  background: #2a2a2a; 
 }
 
-   .admin-td.actions {
+/* ✅ Actions column fix */
+.admin-td.actions {
+  border-bottom: 1px solid #333;   /* same guhit as ibang cells */
+  vertical-align: middle;          /* align sa gitna ng row */
+}
+
+.admin-actions-wrapper {
   display: flex;
   justify-content: center;
-  align-items: center;   /* ✅ pantay sa gitna ng row */
+  align-items: center;
   gap: 10px;
-  border-bottom: 1px solid #333;  /* ✅ same guhit as ibang cells */
-   }
+}
 
 .admin-btn-edit, .admin-btn-delete {
   padding: 6px 12px;
@@ -983,7 +988,7 @@ html {
 }
 
 .admin-btn-edit:hover { 
-   background: #217dbb; 
+  background: #217dbb; 
 }
 
 .admin-btn-delete {
@@ -992,7 +997,7 @@ html {
 }
 
 .admin-btn-delete:hover { 
-   background: #c0392b; 
+  background: #c0392b; 
 }
 
 @media (max-width: 768px) {
@@ -1013,6 +1018,11 @@ html {
   .admin-td {
     text-align: left;
     padding: 10px;
+  }
+   
+  .admin-actions-wrapper {
+    flex-direction: column;
+    gap: 8px;
   }
 }
 
