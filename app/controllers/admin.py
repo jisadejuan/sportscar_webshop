@@ -60,12 +60,13 @@ def create_product():
     product.category = request.form['category']
     product.price = float(request.form['price'])
     product.stock = int(request.form['stock'])
+
+    # retain old value kung blank
     product.description = request.form['description'] or product.description
     product.image = request.form['image'] or product.image
 
     db.session.commit()
     return redirect(url_for('admin.dashboard'))
-    return render_template('admin/create.html')
 
 # --- EDIT PRODUCT ---
 @admin_bp.route('/edit_product/<int:product_id>', methods=['GET', 'POST'])
