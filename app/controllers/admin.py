@@ -69,6 +69,7 @@ def create_product():
     return redirect(url_for('admin.dashboard'))
 
 # --- EDIT PRODUCT ---
+# --- EDIT PRODUCT ---
 @admin_bp.route('/edit_product/<int:product_id>', methods=['GET', 'POST'])
 def edit_product(product_id):
     if 'admin_id' not in session:
@@ -88,7 +89,6 @@ def edit_product(product_id):
         return redirect(url_for('admin.dashboard'))
 
     return render_template('admin/edit.html', product=product)
-
 
 # --- DELETE PRODUCT (with confirmation) ---
 @admin_bp.route('/delete_product/<int:product_id>', methods=['GET', 'POST'])
