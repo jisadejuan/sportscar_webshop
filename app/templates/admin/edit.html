@@ -45,7 +45,6 @@
       <input type="text" id="edit-image" name="image" value="{{ product.image }}" required>
     </div>
 
-    <!-- ✅ Correct preview: use product.image -->
     <div class="edit-product-preview">
       {% if product.image %}
         <img src="{{ url_for('static', filename='images/' ~ product.image) }}"
