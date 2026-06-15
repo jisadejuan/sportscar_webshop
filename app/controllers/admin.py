@@ -84,11 +84,18 @@ def edit_product(product_id):
         return redirect(url_for('admin.admin_login'))
 
     product = Product.query.get_or_404(product_id)
+
     if request.method == 'POST':
         product.name = request.form['name']
-        product.price = request.form['price']
+        product.category = request.form['category']
+        product.price = float(request.form['price'])
+        product.stock = int(request.form['stock'])
+        product.description = request.form['description']
+        product.image = request.form['image']  # filename lang
+
         db.session.commit()
         return redirect(url_for('admin.dashboard'))
+
     return render_template('admin/edit.html', product=product)
 
 # --- DELETE PRODUCT (with confirmation) ---
