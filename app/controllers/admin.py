@@ -121,3 +121,30 @@ def delete_product(product_id):
 def logout():
     session.pop('admin_id', None)   # 👉 clear session
     return redirect(url_for('admin.admin_login'))
+
+
+@admin_bp.route('/dashboard')
+def dashboard():
+    if 'admin_id' not in session:
+        return redirect(url_for('admin.admin_login'))
+    # ipakita lang ang dashboard page
+    return render_template('admin/dashboard.html')
+
+# --- VIEWING OF PRODUCTS ---
+
+@admin_bp.route('/dashboard/products')
+def dashboard_products():
+    if 'admin_id' not in session:
+        return redirect(url_for('admin.admin_login'))
+    items = Product.query.all()
+    categories = {}
+    for car in items:
+        categories.setdefault(car.category, []).append(car)
+    return render_template('products/list.html', categories=categories)
+
+@admin_bp.route('/dashboard/products/<int:product_id>')
+def dashboard_product_detail(product_id):
+    if 'admin_id' not in session:
+        return redirect(url_for('admin.admin_login'))
+    item = Product.query.get_or_404(product_id)
+    return render_template('products/detail.html', item=item)
