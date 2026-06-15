@@ -48,7 +48,7 @@
     <!-- ✅ Correct preview: use product.image -->
     <div class="edit-product-preview">
   {% if product.image %}
-    <img src="{{ url_for('static', filename=product.image) }}" 
+    <img src="{{ url_for('static', filename=product.image) }}"
          alt="{{ product.name }}" style="max-width:200px;">
   {% else %}
     <p>No image available</p>
