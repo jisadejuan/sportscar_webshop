@@ -1099,6 +1099,14 @@ html {
   text-decoration: underline;
 }
 
+.admin-btn-edit, .admin-btn-delete {
+  padding: 6px 12px;
+  min-height: 32px;  
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* ================================
    EDIT PRODUCT PAGE STYLES
    ================================ */
