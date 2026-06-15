@@ -37,23 +37,23 @@
 
     <div class="edit-product-group">
       <label for="edit-description">Description</label>
-      <textarea id="edit-description" name="description">{{ product.description }}</textarea>
+      <textarea id="edit-description" name="description" required>{{ product.description }}</textarea>
     </div>
 
     <div class="edit-product-group">
       <label for="edit-image">Image Filename</label>
-      <input type="text" id="edit-image" name="image" value="{{ product.image }}">
+      <input type="text" id="edit-image" name="image" value="{{ product.image }}" required>
     </div>
 
     <!-- ✅ Correct preview: use product.image -->
     <div class="edit-product-preview">
-  {% if product.image %}
-    <img src="{{ url_for('static', filename='images/' ~ product.image) }}"
-         alt="{{ product.name }}" style="max-width:200px;">
-  {% else %}
-    <p>No image available</p>
-  {% endif %}
-</div>
+      {% if product.image %}
+        <img src="{{ url_for('static', filename='images/' ~ product.image) }}"
+             alt="{{ product.name }}" style="max-width:200px;">
+      {% else %}
+        <p>No image available</p>
+      {% endif %}
+    </div>
 
     <div class="edit-product-actions">
       <button type="submit" class="edit-btn-save">Save Changes</button>
