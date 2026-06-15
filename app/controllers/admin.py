@@ -33,19 +33,17 @@ def admin_login():
         admin = Admin.query.filter_by(email=email, password=password).first()
         if admin:
             session['admin_id'] = admin.id
-            return redirect(url_for('admin.dashboard'))
+            return redirect(url_for('admin.admin_dashboard'))
         else:
             return redirect(url_for('admin.admin_signup'))
 
-    # GET request → unified login page
     return render_template('public/login.html')
 
 # --- ADMIN DASHBOARD ---
 @admin_bp.route('/dashboard')
-def dashboard():
+def admin_dashboard():
     if 'admin_id' not in session:
         return redirect(url_for('admin.admin_login'))
-
     products = Product.query.all()
     return render_template('admin/admin.html', products=products)
 
@@ -74,10 +72,9 @@ def create_product():
 
         db.session.add(new_product)
         db.session.commit()
-        return redirect(url_for('admin.dashboard'))
+        return redirect(url_for('admin.admin_dashboard'))
 
     return render_template('admin/create.html')
-
 
 # --- EDIT PRODUCT ---
 @admin_bp.route('/edit_product/<int:product_id>', methods=['GET', 'POST'])
@@ -96,11 +93,11 @@ def edit_product(product_id):
         product.image = request.form.get('image', product.image)
 
         db.session.commit()
-        return redirect(url_for('admin.dashboard'))
+        return redirect(url_for('admin.admin_dashboard'))
 
     return render_template('admin/edit.html', product=product)
 
-# --- DELETE PRODUCT (with confirmation) ---
+# --- DELETE PRODUCT ---
 @admin_bp.route('/delete_product/<int:product_id>', methods=['GET', 'POST'])
 def delete_product(product_id):
     if 'admin_id' not in session:
@@ -111,29 +108,19 @@ def delete_product(product_id):
     if request.method == 'POST':
         db.session.delete(product)
         db.session.commit()
-        return redirect(url_for('admin.dashboard'))
+        return redirect(url_for('admin.admin_dashboard'))
 
-    # GET request → show confirm delete page
     return render_template('admin/confirm_delete.html', product=product)
 
 # --- ADMIN LOGOUT ---
 @admin_bp.route('/logout')
 def logout():
-    session.pop('admin_id', None)   # 👉 clear session
+    session.pop('admin_id', None)
     return redirect(url_for('admin.admin_login'))
 
-
-@admin_bp.route('/dashboard')
-def dashboard():
-    if 'admin_id' not in session:
-        return redirect(url_for('admin.admin_login'))
-    # ipakita lang ang dashboard page
-    return render_template('admin/dashboard.html')
-
-# --- VIEWING OF PRODUCTS ---
-
+# --- ADMIN VIEWING OF PRODUCTS (reuse user templates) ---
 @admin_bp.route('/dashboard/products')
-def dashboard_products():
+def admin_dashboard_products():
     if 'admin_id' not in session:
         return redirect(url_for('admin.admin_login'))
     items = Product.query.all()
@@ -143,7 +130,7 @@ def dashboard_products():
     return render_template('products/list.html', categories=categories)
 
 @admin_bp.route('/dashboard/products/<int:product_id>')
-def dashboard_product_detail(product_id):
+def admin_dashboard_product_detail(product_id):
     if 'admin_id' not in session:
         return redirect(url_for('admin.admin_login'))
     item = Product.query.get_or_404(product_id)
